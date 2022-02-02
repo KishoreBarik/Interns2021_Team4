@@ -20,7 +20,7 @@ use Illuminate\Support\Facades\Route;
 //     return $request->user();
 // });
 
-// CRUD routes for Users
+// CRUD routes & Other routes  for Users
 Route::group(['prefix' => 'users'] , function(){
 
     /*
@@ -58,7 +58,35 @@ Route::group(['prefix' => 'users'] , function(){
     Access     : Private
     */
     Route::put('/{id}' , [UserController::class , 'update'])->name('api.users.update');
+
+
+
+
+
+    /*
+    For        : Reset the Forget Password
+    RouteName  : /{id}
+    Method     : PUT
+    Access     : Private
+    */ 
+    Route::put('/{id}/changepassword' , [UserController::class , 'changePassword'])->name('api.users.changePassword');
+
+
+
+
+
+    /*
+    For        : Reset the Forget Password
+    RouteName  : /{id}
+    Method     : PUT
+    Access     : Private
+    */
+    Route::put('/{id}/forgetpassword' , [UserController::class , 'forgetPassword'])->name('api.users.forgetpassword');
     
+
+
+
+
 });
 
 
@@ -104,6 +132,7 @@ Route::group(['prefix' => 'departments'] , function(){
     // Method     : PUT/PATCH
     // Access     : Private
     Route::put('/{id}' , [DepartmentController::class , 'update'])->name('api.departments.update');
+
 
 
 
