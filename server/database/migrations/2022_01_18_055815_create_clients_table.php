@@ -13,13 +13,15 @@ class CreateClientsTable extends Migration
      */
     public function up()
     {
+        Schema::dropIfExists('clients');
         Schema::create('clients', function (Blueprint $table) {
-            $table->id();
+            $table->Integer('id', true);
             $table->string('name');
             $table->string('description');
-            $table->integer('dep_id'); //fk to departments
-            $table->integer('added_by'); //fk to users
-            $table->enum('status',['active','inactive']);
+            $table->unsignedInteger('department_id');//foreign key departments
+            $table->foreign('department_id')->references('id')->on('departments');
+            $table->integer('added_by');
+            $table->enum('status',['active','inactive'])->default('active');
             $table->timestamps();
         });
     }

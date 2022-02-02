@@ -13,11 +13,14 @@ class CreateDepartmentAccessesTable extends Migration
      */
     public function up()
     {
+        Schema::dropIfExists('department_accesses');
         Schema::create('department_accesses', function (Blueprint $table) {
-            $table->id();
-            $table->integer('dep_id'); //fk to departments
-            $table->integer('user_id'); //fk to users
-            $table->string('status');
+            $table->Integer('id', true);
+            $table->unsignedinteger('department_id');
+            $table->foreign('department_id')->references('id')->on('departments');
+            $table->unsignedinteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users');
+            $table->enum('status',['active','inactive'])->default('active');
             $table->timestamps();
         });
     }
