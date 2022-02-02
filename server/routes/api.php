@@ -21,7 +21,7 @@ use Illuminate\Support\Facades\Route;
 // });
 
 // CRUD routes for Users
-Route::group(['prefix' => 'users'] , function(){
+Route::group(['prefix' => 'users'], function () {
 
     /*
     For        : Getting all Users
@@ -29,7 +29,7 @@ Route::group(['prefix' => 'users'] , function(){
     Method     : GET
     Access     : Private
     */
-    Route::get('/' , [UserController::class , 'index'])->name('api.users.index');
+    Route::get('/', [UserController::class, 'index'])->name('api.users.index');
 
 
 
@@ -39,7 +39,7 @@ Route::group(['prefix' => 'users'] , function(){
     Method     : POST
     Access     : Public
     */
-    Route::post('/' , [UserController::class , 'create'])->name('api.users.create');
+    Route::post('/', [UserController::class, 'create'])->name('api.users.create');
 
 
     /*
@@ -48,7 +48,7 @@ Route::group(['prefix' => 'users'] , function(){
     Method     : GET
     Access     : Private
     */
-    Route::get('/{id}' , [UserController::class , 'show'])->name('api.users.show');
+    Route::get('/{id}', [UserController::class, 'show'])->name('api.users.show');
 
 
     /*
@@ -57,8 +57,7 @@ Route::group(['prefix' => 'users'] , function(){
     Method     : PUT
     Access     : Private
     */
-    Route::put('/{id}' , [UserController::class , 'update'])->name('api.users.update');
-    
+    Route::put('/{id}', [UserController::class, 'update'])->name('api.users.update');
 });
 
 
@@ -67,7 +66,7 @@ Route::group(['prefix' => 'users'] , function(){
 
 
 //CRUD for Departments
-Route::group(['prefix' => 'departments'] , function(){
+Route::group(['prefix' => 'departments'], function () {
 
     /*
     For        : Getting all Departments Details
@@ -75,7 +74,7 @@ Route::group(['prefix' => 'departments'] , function(){
     Method     : GET
     Access     : Private
     */
-    Route::get('/' ,    [DepartmentController::class , 'index'])->name('api.departments.index');
+    Route::get('/',    [DepartmentController::class, 'index'])->name('api.departments.index');
 
 
 
@@ -85,7 +84,7 @@ Route::group(['prefix' => 'departments'] , function(){
     Method     : POST
     Access     : Private
     */
-    Route::post('/' ,   [DepartmentController::class , 'create'])->name('api.departments.create');
+    Route::post('/',   [DepartmentController::class, 'create'])->name('api.departments.create');
 
 
 
@@ -95,7 +94,7 @@ Route::group(['prefix' => 'departments'] , function(){
     Method     : GET
     Access     : Private
     */
-    Route::get('/{id} ' ,[DepartmentController::class , 'show'])->name('api.departments.show');
+    Route::get('/{id} ', [DepartmentController::class, 'show'])->name('api.departments.show');
 
 
 
@@ -103,7 +102,7 @@ Route::group(['prefix' => 'departments'] , function(){
     // RouteName  : /{id}
     // Method     : PUT/PATCH
     // Access     : Private
-    Route::put('/{id}' , [DepartmentController::class , 'update'])->name('api.departments.update');
+    Route::put('/{id}', [DepartmentController::class, 'update'])->name('api.departments.update');
 
 
 
@@ -111,6 +110,21 @@ Route::group(['prefix' => 'departments'] , function(){
     // RouteName  : /
     // Method     : GET
     // Access     : Private
-    Route::delete('/{id}' , [DepartmentController::class , 'destroy'])->name('api.departments.delete');
-    
+    Route::delete('/{id}', [DepartmentController::class, 'destroy'])->name('api.departments.delete');
+});
+
+Route::group(['prefix' => 'clients'], function () {
+    Route::get('/', [ClientController::class, 'index'])->name('api.clients.index');
+    Route::post('/', [ClientController::class, 'create'])->name('api.clients.create');
+    Route::get('/{id}', [ClientController::class, 'show'])->name('api.clients.show');
+    Route::put('/{id}', [ClientController::class, 'update'])->name('api.clients.update');
+    Route::delete('/{id}', [ClientController::class, 'destroy'])->name('api.clients.destroy');
+});
+//CRUD routes for projects
+Route::group(['prefix' => 'projects'], function () {
+    Route::get('/', [ProjectController::class, 'index'])->name('api.projects.index');
+    Route::post('/', [ProjectController::class, 'create'])->name('api.projects.create');
+    Route::get('/{id}', [ProjectController::class, 'show'])->name('api.projects.show');
+    Route::put('/{id}', [ProjectController::class, 'update'])->name('api.projects.update');
+    Route::delete('/{id}', [ProjectController::class, 'destroy'])->name('api.projects.destroy');
 });
