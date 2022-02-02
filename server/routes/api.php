@@ -81,7 +81,7 @@ Route::group(['prefix' => 'users'] , function(){
     Method     : PUT
     Access     : Private
     */
-    Route::put('/{id}/forgetpassword' , [UserController::class , 'forgetPassword'])->name('api.users.forgetpassword');
+    Route::put('/{id}/forgetpassword' , [UserController::class , 'forgetPassword'])->name('api.users.forgetPassword');
     
 
 
