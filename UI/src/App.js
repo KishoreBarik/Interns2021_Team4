@@ -6,7 +6,7 @@ import LoginPage from "./components/LoginPage";
 import Dashboard from "./components/Dashboard";
 import { Reports, ReportsOne, ReportsTwo, ReportsThree } from "./pages/Reports";
 import MonthlyReport from "./pages/MonthlyReport";
-// import ForgotPassword from "./components/ForgotPassword";
+import ForgotPassword from "./components/ForgotPassword";
 
 function App() {
   return (
@@ -16,7 +16,7 @@ function App() {
           <Route exact path="/" element={<LoginPage />} />
           <Route exact path="/loginpage" element={<LoginPage />} />
           <Route exact path="/dashboard" element={<Dashboard />} />
-          {/* <Route exact path="/forgotpassword" element={<ForgotPassword />} /> */}
+          <Route exact path="/forgotpassword" element={<ForgotPassword />}/>
           <Route path="pages/Reports" exact element={<Reports />} />
           <Route path="pages/Reports" exact element={<ReportsOne />} />
           <Route path="pages/Reports" exact element={<ReportsTwo />} />

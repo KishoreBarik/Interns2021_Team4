@@ -75,7 +75,7 @@ class LoginPage extends Component {
             <div>
               <div className="imgs">
                 <div className="container-image">
-                  <img src={user_icon} className="user_icon" alt="user" />
+                 <img src={user_icon} className="user_icon" alt="user" />
                 </div>
               </div>
               <div>
@@ -117,6 +117,7 @@ class LoginPage extends Component {
                 </div>
 
                 <div>
+
                   <button
                     type="submit"
                     value="Login"
@@ -125,11 +126,14 @@ class LoginPage extends Component {
                     <Link to="/dashboard" className="text-white link">
                       Login
                     </Link>
+
                   </button>
                 </div>
+              
                 <div className="link mt-2">
                   <Link to="/forgotpassword">Forgot Password</Link>
                 </div>
+                
               </div>
             </div>
           </div>
