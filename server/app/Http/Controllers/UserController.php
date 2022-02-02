@@ -67,7 +67,6 @@ class UserController extends Controller
         $user  = User::whereId($id)->first();
 
         return [
-            'message' => "the required user for this {$id}",
             'User' => new CreateUserResource($user)
         ];
     }
@@ -102,14 +101,55 @@ class UserController extends Controller
         
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
+    public function forgetPassword(Request $request ,$id){
+
+        $request->validate([
+            'new_password' => 'required|min:8|max:12',
+            'cof_password' => 'required|min:8|max:12'
+        ]);
+
+        if($request->new_password === $request->cof_password){
+
+            User::whereId($id)->update([
+                'password' => Hash::make($request->new_password)
+            ]);
+
+            return [
+                'message' => 'Password Reset Successfully ',
+                'user' => new CreateUserResource(User::find($id))
+            ];
+        }
+
+        return [
+            'message' => 'Password Didnt Match !! '
+             
+        ];
+
+
+    }
+
+
+    public function changePassword(Request $request , $id){
+        $request->validate([
+            'new_password' => 'required|min:8|max:16',
+            'cof_password' => 'required|min:8|max:16'
+        ]);
+
+        if($request->new_password === $request->cof_password){
+
+            User::whereId($id)->update([
+                'password' => Hash::make($request->new_password)
+            ]);
+
+            return [
+                'message' => 'Password Changed Successfully ',
+                'user' => new CreateUserResource(User::find($id))
+            ];
+        }
+
+        return [
+            'message' => 'Password Didnt Match !! '
+             
+        ];
     }
 }
