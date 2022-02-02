@@ -45,7 +45,7 @@ class Dashboard extends Component {
               <div class="card p-3">
                 <div class="card-body">
                   <h5 class="card-title">Project-3</h5>
-                  <p class="card-text">Hello World</p>
+                  <p class="card-text">Welcome</p>
                   <Link to="" class="btn btn-primary">
                     View More
                   </Link>
