@@ -4,10 +4,11 @@
   display: flex;
   padding: 70px 0 70px 0;
   background-color: rgb(252, 252, 252);
+  font-family: "Times New Roman", Times, serif;
 }
 
 .sub-main {
-  display: flex;
+  display: inline-table;
   justify-content: center;
   height: 610px;
   width: 35%;
@@ -19,7 +20,6 @@
 
 .heading {
   font-size: 30px;
-  font-family: Sans-serif;
 }
 
 .imgs {
@@ -75,10 +75,17 @@ option {
 }
 
 a {
-  color: blue;
+  color: teal;
 }
 
 .login-btn {
   border-radius: 30px;
   font-size: 20px;
 }
+
+.btn{
+  background-color: teal!important;
+  border: white!important;
+  text-decoration: none;
+}
+

@@ -1,8 +1,10 @@
 import React from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
+import NavBar from "./NavBar";
 import Form from 'react-bootstrap/Form'
 import Button  from 'react-bootstrap/Button';
 import { Link } from "react-router-dom";
+
 
 class ForgotPassword extends React.Component
 {
@@ -53,6 +55,7 @@ class ForgotPassword extends React.Component
     render()
     {
     return ( 
+      <div>  <NavBar />
       <div className="container">
         <br/><br/><br/>
         <div className="row">
@@ -110,7 +113,7 @@ class ForgotPassword extends React.Component
      </div>
     
      </div>
-
+      </div>
     );
     };
 };

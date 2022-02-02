@@ -2,15 +2,16 @@ import React from "react";
 import { Link } from "react-router-dom";
 import "../../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import { MdOutlineTimer } from "react-icons/md";
+import "./NavBar.css";
 
 function NavBar(props) {
   return (
     <div>
-      <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+      <nav className="navbar navbar-expand-lg navbar-dark ">
         <Link class="navbar-brand" to="/">
           <h5>
             <MdOutlineTimer size={26} />
-            TimeHunter.io
+            &nbsp;TimeHunter.io
           </h5>
         </Link>
         <button
