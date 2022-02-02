@@ -13,18 +13,19 @@ class CreateUsersTable extends Migration
      */
     public function up()
     {
+        Schema::dropIfExists('users');
         Schema::create('users', function (Blueprint $table) {
-            $table->id();
-            $table->enum('user_type',['admin','user']);
+            $table->Integer('id', true);
+            $table->string('user_type');
             $table->string('user_name')->unique();
             $table->string('email')->unique()->nullable();
-            $table->string('password');
             $table->string('first_name')->nullable();
             $table->string('last_name')->nullable();
-            $table->enum('gender',['male','female'])->nullable();
-            $table->date('date_of_birth')->nullable();
-            $table->enum('status',['active','inactive']);
+            $table->string('gender')->nullable();
+            $table->date('date_ of _birth')->nullable();
             $table->timestamp('email_verified_at')->nullable();
+            $table->string('password');
+            $table->enum('status',['active','inactive'])->default('active');
             $table->rememberToken();
             $table->timestamps();
         });
