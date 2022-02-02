@@ -1,15 +1,20 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import "../../node_modules/bootstrap/dist/css/bootstrap.min.css";
-import Sidebar from "./sidebar";
 import "./Dashboard.css";
+import NavBar from "./NavBar";
 
 class Dashboard extends Component {
   render() {
     return (
       <div>
         <div>
-          <Sidebar />
+          <NavBar
+            navElement="Dashboard"
+            navElement1="Report"
+            navElement2="Monthly Report"
+            username="Username"
+          />
         </div>
         <div class="m-5">
           <div class="row">
