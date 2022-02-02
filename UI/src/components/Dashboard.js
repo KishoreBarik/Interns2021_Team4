@@ -55,20 +55,7 @@ class Dashboard extends Component {
                 </div>
               </div>
             </div>
-            <div class="col-sm-3 projects-container">
-              <div class="card p-3">
-                <div class="card-body">
-                  <h5 class="card-title">Project-4</h5>
-                  <p class="card-text">
-                    With supporting text below as a natural lead-in to
-                    additional content.
-                  </p>
-                  <Link to="" class="btn btn-primary">
-                    View More
-                  </Link>
-                </div>
-              </div>
-            </div>
+           
           </div>
         </div>
       </div>
