@@ -1,15 +1,20 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import "../../node_modules/bootstrap/dist/css/bootstrap.min.css";
-import Sidebar from "./sidebar";
 import "./Dashboard.css";
+import NavBar from "./NavBar";
 
 class Dashboard extends Component {
   render() {
     return (
       <div>
         <div>
-          <Sidebar />
+          <NavBar
+            navElement="Dashboard"
+            navElement1="Report"
+            navElement2="Monthly Report"
+            username="Username"
+          />
         </div>
         <div class="m-5">
           <div class="row">
@@ -45,7 +50,7 @@ class Dashboard extends Component {
               <div class="card p-3">
                 <div class="card-body">
                   <h5 class="card-title">Project-3</h5>
-                  <p class="card-text">Welcome</p>
+
                   <Link to="" class="btn btn-primary">
                     View More
                   </Link>

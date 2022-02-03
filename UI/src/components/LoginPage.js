@@ -4,6 +4,7 @@ import NavBar from "./NavBar";
 import user_icon from "../images/user_icon.jpg";
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
+import {FcBusinessman} from "react-icons/fc";
 
 class LoginPage extends Component {
   constructor() {
@@ -75,7 +76,7 @@ class LoginPage extends Component {
             <div>
               <div className="imgs">
                 <div className="container-image">
-                  <img src={user_icon} className="user_icon" alt="user" />
+                <FcBusinessman size={125}/>
                 </div>
               </div>
               <div>
@@ -117,19 +118,23 @@ class LoginPage extends Component {
                 </div>
 
                 <div>
+
                   <button
                     type="submit"
                     value="Login"
-                    className="btn btn-primary w-50"
+                    className="btn  w-50"
                   >
                     <Link to="/dashboard" className="text-white link">
                       Login
                     </Link>
+
                   </button>
                 </div>
+              
                 <div className="link mt-2">
                   <Link to="/forgotpassword">Forgot Password</Link>
                 </div>
+                
               </div>
             </div>
           </div>

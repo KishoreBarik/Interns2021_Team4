@@ -18,7 +18,6 @@ class CreateUserResource extends JsonResource
             
             'user_type'=>$this->user_type,
             'user_name'=>$this->user_name,
-            'password'=>$this->password,
             'status'=>$this->status,
         ];
     }
