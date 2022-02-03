@@ -8,14 +8,12 @@ class Dashboard extends Component {
   render() {
     return (
       <div>
-        <div>
-          <NavBar
-            navElement="Dashboard"
-            navElement1="Report"
-            navElement2="Monthly Report"
-            username="Username"
-          />
-        </div>
+        <NavBar
+          navElement="Dashboard"
+          navElement1="Report"
+          navElement2="Monthly Report"
+          username="Username"
+        />
         <div class="m-5">
           <div class="row">
             <div class="col-sm-3 projects-container">
