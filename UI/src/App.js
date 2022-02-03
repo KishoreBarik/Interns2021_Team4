@@ -7,7 +7,7 @@ import Dashboard from "./components/Dashboard";
 import { Reports, ReportsOne, ReportsTwo, ReportsThree } from "./pages/Reports";
 import MonthlyReport from "./pages/MonthlyReport";
 import ForgotPassword from "./components/ForgotPassword";
-
+import ChangePassword from "./components/ChangePassword";
 function App() {
   return (
     <div>
@@ -15,6 +15,7 @@ function App() {
         <Routes>
           <Route exact path="/" element={<LoginPage />} />
           <Route exact path="/loginpage" element={<LoginPage />} />
+          <Route exact path="/changepassword" element={<ChangePassword />} />
           <Route exact path="/user/dashboard" element={<Dashboard />} />
           <Route exact path="/forgotpassword" element={<ForgotPassword />} />
           <Route path="pages/Reports" exact element={<Reports />} />
