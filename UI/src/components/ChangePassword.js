@@ -4,6 +4,7 @@ import Form from "react-bootstrap/Form";
 import { FormGroup, FormControl, FormLabel } from "react-bootstrap";
 import LoaderButton from "./LoaderButton";
 import { useFormFields } from "./hooksLib";
+import NavBar from "./NavBar";
 
 export default function ChangePassword() {
   const [fields, handleFieldChange] = useFormFields({
@@ -42,64 +43,68 @@ export default function ChangePassword() {
   }
 
   return (
-    <div className="container">
-      <br></br>
-      <br></br>
-      <br></br>
-      <div className="row">
-        <div className="col"></div>
-        <div className="col-4">
-          <div className="card text-center center p-3  d-flex justify-content-center">
-            <div className="matter ">
-              <Form onSubmit={handleChangeClick} action="" method="">
-                <FormGroup bsSize="large" controlId="oldPassword">
-                  <FormLabel>Old Password</FormLabel>
-                  <FormControl
-                    type="password"
-                    onChange={handleFieldChange}
-                    value={fields.oldPassword}
-                    placeholder="Enter old password"
-                  />
-                </FormGroup>
-                <hr />
-                <FormGroup bsSize="large" controlId="password">
-                  <FormLabel>New Password</FormLabel>
-                  <FormControl
-                    type="password"
-                    onChange={handleFieldChange}
-                    value={fields.password}
-                    placeholder="Enter New Password"
-                  />
-                </FormGroup>
-                <br />
+    <div>
+      <NavBar />
 
-                <FormGroup bsSize="large" controlId="confirmPassword">
-                  <FormLabel>Confirm Password</FormLabel>
-                  <FormControl
-                    type="password"
-                    onChange={handleFieldChange}
-                    value={fields.confirmPassword}
-                    placeholder="Enter to confirm"
-                  />
-                </FormGroup>
+      <div className="container">
+        <br></br>
+        <br></br>
+        <br></br>
+        <div className="row">
+          <div className="col"></div>
+          <div className="col-4">
+            <div className="card text-center center p-3  d-flex justify-content-center">
+              <div className="matter ">
+                <Form onSubmit={handleChangeClick} action="" method="">
+                  <FormGroup bsSize="large" controlId="oldPassword">
+                    <FormLabel>Old Password</FormLabel>
+                    <FormControl
+                      type="password"
+                      onChange={handleFieldChange}
+                      value={fields.oldPassword}
+                      placeholder="Enter old password"
+                    />
+                  </FormGroup>
+                  <br />
+                  <FormGroup bsSize="large" controlId="password">
+                    <FormLabel>New Password</FormLabel>
+                    <FormControl
+                      type="password"
+                      onChange={handleFieldChange}
+                      value={fields.password}
+                      placeholder="Enter New Password"
+                    />
+                  </FormGroup>
+                  <br />
 
-                <br />
-                <div className="cls">
-                  <LoaderButton
-                    block
-                    type="submit"
-                    bsSize="large"
-                    disabled={!validateForm()}
-                    isLoading={isChanging}
-                  >
-                    Change Password
-                  </LoaderButton>
-                </div>
-              </Form>
+                  <FormGroup bsSize="large" controlId="confirmPassword">
+                    <FormLabel>Confirm Password</FormLabel>
+                    <FormControl
+                      type="password"
+                      onChange={handleFieldChange}
+                      value={fields.confirmPassword}
+                      placeholder="Enter to confirm"
+                    />
+                  </FormGroup>
+
+                  <br />
+                  <div className="cls">
+                    <LoaderButton
+                      block
+                      type="submit"
+                      bsSize="large"
+                      disabled={!validateForm()}
+                      isLoading={isChanging}
+                    >
+                      Change Password
+                    </LoaderButton>
+                  </div>
+                </Form>
+              </div>
             </div>
           </div>
+          <div className="col"></div>
         </div>
-        <div className="col"></div>
       </div>
     </div>
   );
