@@ -45,7 +45,7 @@ function NavBar(props) {
                 {props.navElement2}
               </Link>
             </li>
-            <li class="nav-item dropdown">
+            {/* <li class="nav-item dropdown">
               <Link
                 class="nav-link dropdown-toggle"
                 to="#"
@@ -71,7 +71,7 @@ function NavBar(props) {
                   Log out
                 </Link>
               </div>
-            </li>
+            </li> */}
           </ul>
         </div>
       </nav>
