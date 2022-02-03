@@ -1,6 +1,7 @@
 import React from "react";
 import { MdOutlineTimer } from "react-icons/md";
-import { Navbar, Nav } from "react-bootstrap";
+import { BsPersonFill } from "react-icons/bs";
+import { Navbar, Nav, NavDropdown } from "react-bootstrap";
 import "../../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import "./NavBar.css";
 
@@ -30,6 +31,21 @@ function NavBar(props) {
               </Nav>
               <Nav className="mr-auto">
                 <Nav.Link href="/user/dashboard">{props.navElement2}</Nav.Link>
+              </Nav>
+              <Nav className="mr-auto">
+                <NavDropdown
+                  title={<BsPersonFill size={25} />}
+                  id="collasible-nav-dropdown"
+                  className="userprofile-container"
+                >
+                  <NavDropdown.Item href="">View Profile</NavDropdown.Item>
+                  <NavDropdown.Item href="/changepassword">
+                    Change Password
+                  </NavDropdown.Item>
+
+                  <NavDropdown.Divider />
+                  <NavDropdown.Item href="/">{props.logout}</NavDropdown.Item>
+                </NavDropdown>
               </Nav>
             </Navbar.Collapse>
           </Navbar>

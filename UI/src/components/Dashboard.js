@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+
 import { Link } from "react-router-dom";
 import "../../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import "./Dashboard.css";
@@ -13,6 +14,7 @@ class Dashboard extends Component {
           navElement1="Report"
           navElement2="Monthly Report"
           username="Username"
+          logout="Log Out"
         />
         <div class="m-5">
           <div class="row">
