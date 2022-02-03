@@ -46,13 +46,6 @@ class UserController extends Controller
         ];
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-
 
 
     /**
@@ -100,6 +93,7 @@ class UserController extends Controller
         
         
     }
+
 
     public function forgetPassword(Request $request ,$id){
 
