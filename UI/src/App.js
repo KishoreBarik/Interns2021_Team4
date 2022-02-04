@@ -8,6 +8,8 @@ import { Reports, ReportsOne, ReportsTwo, ReportsThree } from "./pages/Reports";
 import MonthlyReport from "./pages/MonthlyReport";
 import ForgotPassword from "./components/ForgotPassword";
 import ChangePassword from "./components/ChangePassword";
+import ViewProfile from "./components/User/ViewProfile";
+
 function App() {
   return (
     <div>
@@ -23,6 +25,7 @@ function App() {
           <Route path="pages/Reports" exact element={<ReportsTwo />} />
           <Route path="pages/Reports" exact element={<ReportsThree />} />
           <Route path="pages/MonthlyReport" exact element={<MonthlyReport />} />
+          <Route path="/viewprofile" element={<ViewProfile/>}></Route>
         </Routes>
       </div>
     </div>

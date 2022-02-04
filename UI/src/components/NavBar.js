@@ -38,7 +38,7 @@ function NavBar(props) {
                   id="collasible-nav-dropdown"
                   className="userprofile-container"
                 >
-                  <NavDropdown.Item href="">View Profile</NavDropdown.Item>
+                  <NavDropdown.Item href="/viewprofile">View Profile</NavDropdown.Item>
                   <NavDropdown.Item href="/changepassword">
                     Change Password
                   </NavDropdown.Item>
