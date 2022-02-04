@@ -1,9 +1,7 @@
-import Tabs from 'react-bootstrap/Tabs';
 import React from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Link } from "react-router-dom";
 import NavBar from '../NavBar';
-import Dashboard from '../Dashboard';
+
 
 class ViewProfile extends React.Component
 {
