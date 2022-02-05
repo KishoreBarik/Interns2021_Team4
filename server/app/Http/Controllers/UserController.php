@@ -42,7 +42,7 @@ class UserController extends Controller
 
         return [
             'message' => 'User Created..',
-            'user'  => new CreateUserResource($user)
+            'user'  => new CreateUserResource($user) 
         ];
     }
 
