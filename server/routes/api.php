@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
@@ -16,9 +17,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-//     return $request->user();
-// });
+Route::middleware('auth:api')->get('/user', function (Request $request) {
+    return $request->user();
+});
+
 
 // CRUD routes & Other routes  for Users
 Route::group(['prefix' => 'users'] , function(){
@@ -143,18 +145,7 @@ Route::group(['prefix' => 'departments'], function () {
     Route::delete('/{id}', [DepartmentController::class, 'destroy'])->name('api.departments.delete');
 });
 
-// Route::group(['prefix' => 'clients'], function () {
-//     Route::get('/', [ClientController::class, 'index'])->name('api.clients.index');
-//     Route::post('/', [ClientController::class, 'create'])->name('api.clients.create');
-//     Route::get('/{id}', [ClientController::class, 'show'])->name('api.clients.show');
-//     Route::put('/{id}', [ClientController::class, 'update'])->name('api.clients.update');
-//     Route::delete('/{id}', [ClientController::class, 'destroy'])->name('api.clients.destroy');
-// });
-// //CRUD routes for projects
-// Route::group(['prefix' => 'projects'], function () {
-//     Route::get('/', [ProjectController::class, 'index'])->name('api.projects.index');
-//     Route::post('/', [ProjectController::class, 'create'])->name('api.projects.create');
-//     Route::get('/{id}', [ProjectController::class, 'show'])->name('api.projects.show');
-//     Route::put('/{id}', [ProjectController::class, 'update'])->name('api.projects.update');
-//     Route::delete('/{id}', [ProjectController::class, 'destroy'])->name('api.projects.destroy');
-// });
+
+
+Route::post('/login' , [AuthController::class , 'login']);
+Route::post('/logout' , [AuthController::class , 'logout']);
