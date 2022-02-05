@@ -16,6 +16,7 @@ class CreateUserResource extends JsonResource
     {
         return [
             
+            'id'=>$this->id,
             'user_type'=>$this->user_type,
             'user_name'=>$this->user_name,
             'status'=>$this->status,

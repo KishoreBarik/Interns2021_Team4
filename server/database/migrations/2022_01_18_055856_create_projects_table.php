@@ -15,12 +15,11 @@ class CreateProjectsTable extends Migration
     {
         Schema::dropIfExists('projects');
         Schema::create('projects', function (Blueprint $table) {
-            $table->Integer('id', true);
+            $table->increments('id');
             $table->string('name');
             $table->string('description');
             $table->unsignedInteger('client_id');//foreign key clients
-            $table->foreign('client_id')->references('id')->on('clients');
-            $table->integer('added_by');
+            $table->integer('added_by'); //fk to users
             $table->enum('status',['active','inactive'])->default('active');
             $table->timestamps();
         });

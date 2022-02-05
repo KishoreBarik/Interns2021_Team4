@@ -15,12 +15,11 @@ class CreateClientsTable extends Migration
     {
         Schema::dropIfExists('clients');
         Schema::create('clients', function (Blueprint $table) {
-            $table->Integer('id', true);
+            $table->increments('id');
             $table->string('name');
             $table->string('description');
             $table->unsignedInteger('department_id');//foreign key departments
-            $table->foreign('department_id')->references('id')->on('departments');
-            $table->integer('added_by');
+            $table->integer('added_by'); //fk to users
             $table->enum('status',['active','inactive'])->default('active');
             $table->timestamps();
         });

@@ -15,15 +15,13 @@ class CreateTimeentriesTable extends Migration
     {
         Schema::dropIfExists('timeentries');
         Schema::create('timeentries', function (Blueprint $table) {
-            $table->Integer('id', true);
+            $table->increments('id');
             $table->string('task _description');
             $table->integer('project_id');
             $table->unsignedInteger('user_id');//fk
-            $table->foreign('user_id')->references('id')->on('users');
             $table->integer('duration_min');
             $table->date('date');
             $table->unsignedInteger('updated_by');//fk to users
-            $table->foreign('updated_by')->references('id')->on('users');
             $table->timestamps();
         });
     }
