@@ -24,12 +24,18 @@ class AuthController extends Controller
             ];
         }
 
-        return $user->createToken('auth')->accessToken;
+        return [
+            'user_type'=>$user->user_type,
+            'token' => $user->createToken('auth')->accessToken
+        ];
     }
     //
 
     public function logout(Request $request){
         $request->user()->tokens()->delete();
+        return[ 
+            'message' => 'User Logged Out Succesfully'
+        ];
     }
 
 }
