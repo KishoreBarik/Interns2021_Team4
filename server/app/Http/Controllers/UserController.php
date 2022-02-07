@@ -64,16 +64,6 @@ class UserController extends Controller
         ];
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
 
     /**
      * Update the specified resource in storage.
@@ -84,11 +74,11 @@ class UserController extends Controller
      */
     public function update(CreateUserUpdateRequest $request, $id)
     {
-        $user = User::whereId($id)->update($request->all());
-
+        User::whereId($id)->update($request->all());
+        $user = User::whereId($id)->first();
         return [
             "message" => 'user Updated ',
-            'user' => CreateUserResource::collection(User::all())
+            'user' => new CreateUserResource($user)
         ];
         
         
@@ -98,8 +88,8 @@ class UserController extends Controller
     public function forgetPassword(Request $request ,$id){
 
         $request->validate([
-            'new_password' => 'required|min:8|max:12',
-            'cof_password' => 'required|min:8|max:12'
+            'new_password' => 'required|min:8|max:16',
+            'cof_password' => 'required|min:8|max:16'
         ]);
 
         if($request->new_password === $request->cof_password){
@@ -109,8 +99,7 @@ class UserController extends Controller
             ]);
 
             return [
-                'message' => 'Password Reset Successfully ',
-                'user' => new CreateUserResource(User::find($id))
+                'message' => 'Password Reset Successfully '
             ];
         }
 
@@ -136,8 +125,7 @@ class UserController extends Controller
             ]);
 
             return [
-                'message' => 'Password Changed Successfully ',
-                'user' => new CreateUserResource(User::find($id))
+                'message' => 'Password Changed Successfully '
             ];
         }
 

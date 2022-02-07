@@ -26,7 +26,7 @@ class CreateUserUpdateRequest extends FormRequest
         return [
 
             'user_name' =>'max:25',
-            'password'  => 'min:8|max:24',
+            'password'  => 'min:8|max:16',
             'first_name'=>'max:25',
             'last_name' => 'max:25',
             

@@ -32,6 +32,10 @@ class AuthController extends Controller
     //
 
     public function logout(Request $request){
+
+        // if($request->user()->user_type == "admin"){
+        //     return "true";
+        // }
         $request->user()->tokens()->delete();
         return[ 
             'message' => 'User Logged Out Succesfully'
