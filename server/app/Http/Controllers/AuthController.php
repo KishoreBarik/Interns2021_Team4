@@ -12,13 +12,12 @@ class AuthController extends Controller
     public function login(Request $request){
         $request->validate([
             'user_name'=>'required',
-            'password'=>'required',
-            'user_type'=>'required', 
+            'password'=>'required' 
         ]);
 
         $user = User::where('user_name', $request->user_name)->first();
 
-        if(!$user | !Hash::check($request->password , $user->password) | $request->user_type != $user->user_type ){
+        if(!$user | !Hash::check($request->password , $user->password)){
             return [
                 'message' => 'Invalid Credentials '
             ];
@@ -37,9 +36,7 @@ class AuthController extends Controller
         //     return "true";
         // }
         $request->user()->tokens()->delete();
-        return[ 
-            'message' => 'User Logged Out Succesfully'
-        ];
+        return redirect('/');
     }
 
 }
