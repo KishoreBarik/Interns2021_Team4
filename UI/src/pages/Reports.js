@@ -1,37 +1,44 @@
 import React from "react";
+//import { DateRangePicker } from "rsuite";
+import "./Style.css";
+import { DateRangePickerComponent } from "@syncfusion/ej2-react-calendars";
+// import "rsuite/dist/styles/rsuite-default.css";
 
-export const Reports = () => {
+const Reports = () => {
+  const startValue: Date = new Date(
+    new Date().getFullYear(),
+    new Date().getMonth(),
+    14
+  );
+  const endValue: Date = new Date(
+    new Date().getFullYear(),
+    new Date().getMonth() + 1,
+    15
+  );
+  const minDate: Date = new Date(
+    new Date().getFullYear(),
+    new Date().getMonth(),
+    8
+  );
+  const maxDate: Date = new Date(
+    new Date().getFullYear(),
+    new Date().getMonth() + 1,
+    20
+  );
+
   return (
-    <div className="reports">
-      <center>
-        <h1>Reports</h1>
-      </center>
+    <div align="center">
+      <DateRangePickerComponent
+        placeholder="Enter Date Range"
+        startDate={startValue}
+        endDate={endValue}
+        min={minDate}
+        max={maxDate}
+        minDays={1}
+        maxDays={29}
+        format="dd-MMM-yy"
+      ></DateRangePickerComponent>
     </div>
   );
 };
-
-export const ReportsOne = () => {
-  return (
-    <div className="reports">
-      <center>
-        <h1>Reports/reports1</h1>
-      </center>
-    </div>
-  );
-};
-
-export const ReportsTwo = () => {
-  return (
-    <div className="reports">
-      <h1>Reports/reports2</h1>
-    </div>
-  );
-};
-
-export const ReportsThree = () => {
-  return (
-    <div className="reports">
-      <h1>Reports/reports3</h1>
-    </div>
-  );
-};
+export default Reports;

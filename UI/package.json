@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "@react-icons/all-files": "^4.1.0",
+    "@syncfusion/ej2-react-calendars": "^19.4.48",
     "@testing-library/jest-dom": "^5.16.1",
     "@testing-library/react": "^12.1.2",
     "@testing-library/user-event": "^13.5.0",
