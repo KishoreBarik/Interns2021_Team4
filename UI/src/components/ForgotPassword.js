@@ -1,7 +1,7 @@
 import React from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import NavBar from "./NavBar";
-import Form from 'react-bootstrap/Form'
+import Form from 'react-bootstrap/Form';
 import Button  from 'react-bootstrap/Button';
 import { Link } from "react-router-dom";
 

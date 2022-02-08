@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
-import Form from "react-bootstrap/Form";
 import { FormGroup, FormControl, FormLabel } from "react-bootstrap";
 import LoaderButton from "./LoaderButton";
 import { useFormFields } from "./hooksLib";
 import NavBar from "./NavBar";
+import Form from 'react-bootstrap/Form';
 
 export default function ChangePassword() {
   const [fields, handleFieldChange] = useFormFields({
