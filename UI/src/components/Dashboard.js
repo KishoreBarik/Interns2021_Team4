@@ -26,7 +26,7 @@ class Dashboard extends Component {
                     With supporting text below as a natural lead-in to
                     additional content.
                   </p>
-                  <Link to="" class="btn btn-primary">
+                  <Link to="/project1" class="btn btn-primary">
                     View More
                   </Link>
                 </div>
