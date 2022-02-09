@@ -1,11 +1,20 @@
 import React, { Component } from "react";
-
-import { Link } from "react-router-dom";
+import { Accordion } from "react-bootstrap";
 import "../../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import "./Dashboard.css";
 import NavBar from "./NavBar";
 
 class Dashboard extends Component {
+  onClickAddTask() {
+    let tasksContainerEl = document.getElementById("tasksContainer");
+    let task = document.createElement("div");
+    task.classList.add("task");
+    tasksContainerEl.appendChild(task);
+
+    let taskDetails = document.createElement("input");
+    taskDetails.classList.add("p-2 m-2");
+    task.appendChild(taskDetails);
+  }
   render() {
     return (
       <div>
@@ -18,61 +27,59 @@ class Dashboard extends Component {
         />
         <div class="m-5">
           <div class="row">
-            <div class="col-sm-3 projects-container">
-              <div class="card p-3">
-                <div class="card-body">
-                  <h5 class="card-title">Project-1</h5>
-                  <p class="card-text">
-                    With supporting text below as a natural lead-in to
-                    additional content.
-                  </p>
-                  <Link to="/project1" class="btn btn-primary">
-                    View More
-                  </Link>
-                </div>
-              </div>
+            <div class="col-sm-6">
+              <Accordion className="mb-3">
+                <Accordion.Item eventKey="0">
+                  <Accordion.Header>Project 1</Accordion.Header>
+                  <Accordion.Body>
+                    <div className="d-flex flex-row justify-content-end">
+                      <button className="btn btn-primary">+ Add Task</button>
+                    </div>
+                    <div id="tasksContainer"></div>
+                  </Accordion.Body>
+                </Accordion.Item>
+              </Accordion>
             </div>
-            <div class="col-sm-3">
-              <div class="card p-3">
-                <div class="card-body">
-                  <h5 class="card-title">Project-2</h5>
-                  <p class="card-text">
-                    With supporting text below as a natural lead-in to
-                    additional content.
-                  </p>
-                  <Link to="" class="btn btn-primary">
-                    View More
-                  </Link>
-                </div>
-              </div>
+            <div class="col-sm-6">
+              <Accordion className="mb-3">
+                <Accordion.Item eventKey="1">
+                  <Accordion.Header>Project 2</Accordion.Header>
+                  <Accordion.Body>
+                    <div className="d-flex flex-row justify-content-end">
+                      <button className="btn btn-primary">+ Add Task</button>
+                    </div>
+                  </Accordion.Body>
+                </Accordion.Item>
+              </Accordion>
             </div>
-            <div class="col-sm-3">
-              <div class="card p-3">
-                <div class="card-body">
-                  <h5 class="card-title">Project-3</h5>
-                  <p class="card-text">
-                    With supporting text below as a natural lead-in to
-                    additional content.
-                  </p>
-                  <Link to="" class="btn btn-primary">
-                    View More
-                  </Link>
-                </div>
-              </div>
+            <div class="col-sm-6">
+              <Accordion className="mb-3">
+                <Accordion.Item eventKey="2">
+                  <Accordion.Header>Project 3</Accordion.Header>
+                  <Accordion.Body>
+                    <div className="d-flex flex-row justify-content-end">
+                      <button className="btn btn-primary">+ Add Task</button>
+                    </div>
+                  </Accordion.Body>
+                </Accordion.Item>
+              </Accordion>
             </div>
-            <div class="col-sm-3">
-              <div class="card p-3">
-                <div class="card-body">
-                  <h5 class="card-title">Project-4</h5>
-                  <p class="card-text">
-                    With supporting text below as a natural lead-in to
-                    additional content.
-                  </p>
-                  <Link to="" class="btn btn-primary">
-                    View More
-                  </Link>
-                </div>
-              </div>
+            <div class="col-sm-6">
+              <Accordion className="mb-3">
+                <Accordion.Item eventKey="3">
+                  <Accordion.Header>Project 4</Accordion.Header>
+                  <Accordion.Body>
+                    <div className="d-flex flex-row justify-content-end">
+                      <button
+                        className="btn btn-primary"
+                        onClick={this.onClickAddTask}
+                      >
+                        + Add Task
+                      </button>
+                    </div>
+                  </Accordion.Body>
+                </Accordion.Item>
+              </Accordion>
             </div>
           </div>
         </div>

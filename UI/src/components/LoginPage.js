@@ -86,7 +86,7 @@ class LoginPage extends Component {
                     type="text"
                     placeholder="Username"
                     className="name input-class"
-                    name="username"
+                    name="user-name"
                     value={this.state.input.username}
                     onChange={this.handleChange}
                     required
