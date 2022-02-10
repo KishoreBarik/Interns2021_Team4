@@ -8,4 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class DepartmentAccess extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'department_id',
+        'user_id',
+        'status'
+    ];
 }

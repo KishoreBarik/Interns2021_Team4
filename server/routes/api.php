@@ -4,6 +4,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ClientController;
 use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\ProjectController;
+use App\Http\Controllers\TimeEntryController;
 use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -186,4 +187,15 @@ Route::group(['prefix' => 'projects'], function () {
     Route::get('/{id}', [ProjectController::class, 'show'])->name('api.projects.show');
     Route::put('/{id}', [ProjectController::class, 'update'])->name('api.projects.update');
     Route::delete('/{id}', [ProjectController::class, 'destroy'])->name('api.projects.destroy');
+});
+
+
+
+//TimeEntry Routes
+Route::group(['prefix'=>'timeentries'] ,function(){
+    Route::get('/' , [TimeEntryController::class,'index'])->name('api.timeentries.index');
+    Route::post('/' , [TimeEntryController::class,'create'])->name('api.timeentries.create');
+    Route::get('/{id}' , [TimeEntryController::class,'show'])->name('api.timeentries.show');
+    Route::put('/{id}' , [TimeEntryController::class,'update'])->name('api.timeentries.update');
+    
 });
