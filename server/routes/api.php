@@ -3,6 +3,8 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\ClientController;
+use App\Http\Controllers\ProjectController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -22,8 +24,9 @@ use Illuminate\Support\Facades\Route;
     Method     : GET
     Access     : public
 */
-Route::post('/login' , [AuthController::class , 'login']);
-Route::post('/logout' , [AuthController::class , 'logout'])->middleware('auth:api');
+
+Route::post('/login', [AuthController::class, 'login']);
+Route::post('/logout', [AuthController::class, 'logout'])->middleware('auth:api');
 
 
 
@@ -36,7 +39,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 
 //ADMIN ACCESS ROUTES 
-Route::group(['prefix' => 'users', 'middleware'=>['auth:api','isAdmin']] , function(){
+Route::group(['prefix' => 'users', 'middleware' => ['auth:api', 'isAdmin']], function () {
 
     /*
     For        : Getting all Users
@@ -54,15 +57,13 @@ Route::group(['prefix' => 'users', 'middleware'=>['auth:api','isAdmin']] , funct
     Access     : Public
     */
     Route::post('/', [UserController::class, 'create'])->name('api.users.create');
-
-
 });
 
 
 
 
 //User/Admin Authenticated Routes
-Route::group(['prefix'=>'users' , 'middleware'=>'auth:api'] , function(){
+Route::group(['prefix' => 'users', 'middleware' => 'auth:api'], function () {
     /*
     For        : Getting Specific User Details
     RouteName  : /{id}
@@ -78,17 +79,17 @@ Route::group(['prefix'=>'users' , 'middleware'=>'auth:api'] , function(){
     Method     : PUT
     Access     : Private
     */
-    Route::put('/{id}' , [UserController::class , 'update'])->name('api.users.update');
+    Route::put('/{id}', [UserController::class, 'update'])->name('api.users.update');
 
 
-    
+
     /*
     For        : Reset the Forget Password
     RouteName  : /{id}
     Method     : PUT
     Access     : Private
-    */ 
-    Route::put('users/{id}/changepassword' , [UserController::class , 'changePassword'])->name('api.users.changePassword')->middleware('auth:api');
+    */
+    Route::put('users/{id}/changepassword', [UserController::class, 'changePassword'])->name('api.users.changePassword')->middleware('auth:api');
 
 
 
@@ -100,16 +101,14 @@ Route::group(['prefix'=>'users' , 'middleware'=>'auth:api'] , function(){
     Method     : PUT
     Access     : Private
     */
-    Route::put('users/{id}/forgetpassword' , [UserController::class , 'forgetPassword'])->name('api.users.forgetPassword')->middleware('auth:api');
-
-
+    Route::put('users/{id}/forgetpassword', [UserController::class, 'forgetPassword'])->name('api.users.forgetPassword')->middleware('auth:api');
 });
 
 
 
 
 //CRUD for Departments
-Route::group(['prefix' => 'departments' , 'middleware'=>['auth:api','isAdmin']], function () {
+Route::group(['prefix' => 'departments', 'middleware' => ['auth:api', 'isAdmin']], function () {
 
     /*
     For        : Getting all Departments Details
@@ -155,22 +154,20 @@ Route::group(['prefix' => 'departments' , 'middleware'=>['auth:api','isAdmin']],
     // Method     : GET
     // Access     : Private
     Route::delete('/{id}', [DepartmentController::class, 'destroy'])->name('api.departments.delete');
-
-
-    
 });
 
+// Admin access routes for clients
 
-
-Route::group(['prefix' => 'clients'], function () {
+Route::group(['prefix' => 'clients', 'middleware' => ['auth:api', 'isAdmin']], function () {
     Route::get('/', [ClientController::class, 'index'])->name('api.clients.index');
     Route::post('/', [ClientController::class, 'create'])->name('api.clients.create');
     Route::get('/{id}', [ClientController::class, 'show'])->name('api.clients.show');
     Route::put('/{id}', [ClientController::class, 'update'])->name('api.clients.update');
     Route::delete('/{id}', [ClientController::class, 'destroy'])->name('api.clients.destroy');
 });
+// Admin access routes for projects
 //CRUD routes for projects
-Route::group(['prefix' => 'projects'], function () {
+Route::group(['prefix' => 'projects', 'middleware' => ['auth:api', 'isAdmin']], function () {
     Route::get('/', [ProjectController::class, 'index'])->name('api.projects.index');
     Route::post('/', [ProjectController::class, 'create'])->name('api.projects.create');
     Route::get('/{id}', [ProjectController::class, 'show'])->name('api.projects.show');

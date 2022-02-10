@@ -9,28 +9,30 @@ use Illuminate\Support\Facades\Hash;
 class AuthController extends Controller
 {
 
-    public function login(Request $request){
+    public function login(Request $request)
+    {
         $request->validate([
-            'user_name'=>'required',
-            'password'=>'required' 
+            'user_name' => 'required',
+            'password' => 'required'
         ]);
 
         $user = User::where('user_name', $request->user_name)->first();
 
-        if(!$user | !Hash::check($request->password , $user->password)){
+        if (!$user | !Hash::check($request->password, $user->password)) {
             return [
                 'message' => 'Invalid Credentials '
             ];
         }
 
         return [
-            'user_type'=>$user->user_type,
+            'user_type' => $user->user_type,
             'token' => $user->createToken('auth')->accessToken
         ];
     }
     //
 
-    public function logout(Request $request){
+    public function logout(Request $request)
+    {
 
         // if($request->user()->user_type == "admin"){
         //     return "true";
@@ -38,5 +40,4 @@ class AuthController extends Controller
         $request->user()->tokens()->delete();
         return redirect('/');
     }
-
 }
