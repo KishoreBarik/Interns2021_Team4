@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ClientController;
+use App\Http\Controllers\DepartmentAccessController;
 use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\TimeEntryController;
@@ -191,11 +192,31 @@ Route::group(['prefix' => 'projects'], function () {
 
 
 
-//TimeEntry Routes
-Route::group(['prefix'=>'timeentries'] ,function(){
+//TimeEntry Pulbic Routes
+Route::group(['prefix'=>'timeentries' ,'middleware'=>['auth:api','isAdmin']] ,function(){
     Route::get('/' , [TimeEntryController::class,'index'])->name('api.timeentries.index');
     Route::post('/' , [TimeEntryController::class,'create'])->name('api.timeentries.create');
     Route::get('/{id}' , [TimeEntryController::class,'show'])->name('api.timeentries.show');
-    Route::put('/{id}' , [TimeEntryController::class,'update'])->name('api.timeentries.update');
     
+});
+
+
+//TimeEntry Private Routes added
+
+Route::group(['prefix'=>'timeentries', 'middleware'=>'auth:api'] , function(){
+    
+    Route::put('/{id}' , [TimeEntryController::class,'update'])->name('api.timeentries.update');
+});
+
+
+
+
+Route::group(['prefix'=>'department-access'] , function(){
+
+    Route::get('/', [DepartmentAccessController::class , 'index'])->name('api.department-access.index');
+    Route::post('/', [DepartmentAccessController::class , 'create'])->name('api.department-access.create');
+    Route::get('/{id}', [DepartmentAccessController::class , 'show'])->name('api.department-access.show');
+    Route::put('/{id}', [DepartmentAccessController::class , 'update'])->name('api.department-access.update');
+    Route::delete('/{id}', [DepartmentAccessController::class , 'destroy'])->name('api.department-access.destroy');
+
 });

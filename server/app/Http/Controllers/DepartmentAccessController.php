@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Department;
+use App\Models\DepartmentAccess;
 use Illuminate\Http\Request;
 
 class DepartmentAccessController extends Controller
@@ -13,7 +15,10 @@ class DepartmentAccessController extends Controller
      */
     public function index()
     {
-        //
+        $all_dep = DepartmentAccess::all();
+        return[
+            'all department-acceses'=>$all_dep
+        ];
     }
 
     /**
@@ -21,20 +26,15 @@ class DepartmentAccessController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        //
-    }
+        $department_access = DepartmentAccess::create($request->all());
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
+        return[
+            'message'=>'Department access was given ',
+            'department_access'=>$department_access
+
+        ];
     }
 
     /**
@@ -45,18 +45,12 @@ class DepartmentAccessController extends Controller
      */
     public function show($id)
     {
-        //
-    }
+        $department_access = DepartmentAccess::whereId($id)->first();
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
+        return [
+            'message' => 'Required Department access',
+            'department_access'=>$department_access
+        ];
     }
 
     /**
@@ -68,17 +62,20 @@ class DepartmentAccessController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        DepartmentAccess::whereId($id)->update($request->all());
+
+        return [
+            'message'=>'Department Access Updated ',
+            'DepartmentAccess'=>DepartmentAccess::whereId($id)->first()
+        ];
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
+    public function destroy($id){
+        DepartmentAccess::whereId($id)->delete();
+        return[
+            'message' => 'Department Access Denied for this user',
+            
+        ];
     }
+
 }
