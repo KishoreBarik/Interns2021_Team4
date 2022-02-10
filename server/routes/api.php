@@ -1,28 +1,38 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\ClientController;
 use App\Http\Controllers\DepartmentController;
+use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
-| API Routes
+| API Routes                                                               
 |--------------------------------------------------------------------------
-
 */
 
 
 
 
 /*
-    For        : Getting all Users
-    RouteName  : /
-    Method     : GET
-    Access     : public
+    For        : Login
+    RouteName  : /login
+    Method     : POST
+    Access     : Public
 */
 Route::post('/login' , [AuthController::class , 'login']);
+
+
+
+/*
+    For        : Logout
+    RouteName  : /logout
+    Method     : POST
+    Access     : Private
+*/
 Route::post('/logout' , [AuthController::class , 'logout'])->middleware('auth:api');
 
 
@@ -162,7 +172,7 @@ Route::group(['prefix' => 'departments' , 'middleware'=>['auth:api','isAdmin']],
 
 
 
-Route::group(['prefix' => 'clients'], function () {
+Route::group(['prefix' => 'clients' ], function () {
     Route::get('/', [ClientController::class, 'index'])->name('api.clients.index');
     Route::post('/', [ClientController::class, 'create'])->name('api.clients.create');
     Route::get('/{id}', [ClientController::class, 'show'])->name('api.clients.show');
