@@ -7,6 +7,10 @@ use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\TimeEntryController;
 use App\Http\Controllers\UserController;
+use App\Models\Client;
+use App\Models\Department;
+use App\Models\Project;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -220,3 +224,89 @@ Route::group(['prefix'=>'department-access', 'middleware'=>['auth:api','isAdmin'
     Route::delete('/{id}', [DepartmentAccessController::class , 'destroy'])->name('api.department-access.destroy');
 
 });
+
+
+
+//
+/*
+|--------------------------------------------------------------------------
+|RELATIONAL ROUTES                    -----------------------------------------------------------------
+*/
+
+
+//Projects under a one particular user
+Route::get('/user/{id}/projects',function($id){
+    $user_projects = User::findOrFail($id)->projects;
+
+    return $user_projects;
+})->middleware('auth:api');
+
+
+
+//The client list belongs to the user
+Route::get('/user/{id}/clients' , function($id){
+    $projects = User::findOrFail($id)->projects;
+
+    foreach ($projects as $proj){
+        echo Client::findorFail($proj->client_id);
+    }
+})->middleware('auth:api');
+
+
+
+
+//The Department list that one user BelongsTo
+Route::get('/user/{id}/departments',function($id){
+    $user_dep = User::findOrFail($id)->departments;
+
+    return $user_dep;
+})->middleware('auth:api');
+
+
+
+//The users List under a specific project
+Route::get('/project/{id}/users',function($id){
+    $project_users = Project::findOrFail($id)->users;
+
+    return $project_users;
+})->middleware(['auth:api','isAdmin']);
+
+
+
+
+//The users Under a Department
+Route::get('/department/{id}/users',function($id){
+    $dep_users = Department::findOrFail($id)->users;
+
+    return $dep_users;
+})->middleware(['auth:api','isAdmin']);
+
+
+
+//The List of projects under A departments
+
+Route::get('/department/{id}/projects',function($id){
+    $dep_projs = Department::findOrFail($id)->projects;
+
+    return $dep_projs;
+})->middleware(['auth:api','isAdmin']);
+
+
+//Client List under a Department
+Route::get('/department/{id}/clients',function($id){
+    $dep_clients = Department::findOrFail($id)->clients;
+
+    return $dep_clients;
+})->middleware(['auth:api','isAdmin']);
+
+
+
+//users Under Client
+Route::get('/client/{id}/users',function($id){
+    $department = Client::findOrFail($id)->departments;
+    
+    $users = Department::findOrFail($department->id)->users;
+
+    return $users;
+})->middleware(['auth:api','isAdmin']);
+

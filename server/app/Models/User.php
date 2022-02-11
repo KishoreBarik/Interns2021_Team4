@@ -48,4 +48,16 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+
+    //Total projects under A User
+    public function projects(){
+        return $this->belongsToMany('App\Models\Project','time_entries','user_id','project_id');
+    }
+
+
+    //Total Departments One user belongs to
+    public function departments(){
+        return $this->belongsToMany('App\Models\Department','department_accesses','user_id','department_id');
+    }
 }
