@@ -211,7 +211,7 @@ Route::group(['prefix'=>'timeentries', 'middleware'=>'auth:api'] , function(){
 
 
 
-Route::group(['prefix'=>'department-access'] , function(){
+Route::group(['prefix'=>'department-access', 'middleware'=>['auth:api','isAdmin']] , function(){
 
     Route::get('/', [DepartmentAccessController::class , 'index'])->name('api.department-access.index');
     Route::post('/', [DepartmentAccessController::class , 'create'])->name('api.department-access.create');
