@@ -205,7 +205,7 @@ Route::group(['prefix'=>'timeentries' ,'middleware'=>['auth:api','isAdmin']] ,fu
 });
 
 
-//TimeEntry Private Routes added
+//TimeEntry Private Routes
 
 Route::group(['prefix'=>'timeentries', 'middleware'=>'auth:api'] , function(){
     
@@ -214,7 +214,7 @@ Route::group(['prefix'=>'timeentries', 'middleware'=>'auth:api'] , function(){
 
 
 
-
+//Routes for Department-accesses
 Route::group(['prefix'=>'department-access', 'middleware'=>['auth:api','isAdmin']] , function(){
 
     Route::get('/', [DepartmentAccessController::class , 'index'])->name('api.department-access.index');
@@ -233,80 +233,91 @@ Route::group(['prefix'=>'department-access', 'middleware'=>['auth:api','isAdmin'
 |RELATIONAL ROUTES                    -----------------------------------------------------------------
 */
 
+//User Accessible Realtional Routes
 
-//Projects under a one particular user
-Route::get('/user/{id}/projects',function($id){
-    $user_projects = User::findOrFail($id)->projects;
+Route::group(['middleware'=>'auth:api'], function(){
+    //Projects under a one particular user
+    Route::get('/user/{id}/projects',function($id){
+        $user_projects = User::findOrFail($id)->projects;
 
-    return $user_projects;
-})->middleware('auth:api');
-
-
-
-//The client list belongs to the user
-Route::get('/user/{id}/clients' , function($id){
-    $projects = User::findOrFail($id)->projects;
-
-    foreach ($projects as $proj){
-        echo Client::findorFail($proj->client_id);
-    }
-})->middleware('auth:api');
+        return $user_projects;
+    });
 
 
+    //The client list belongs to the user
+    Route::get('/user/{id}/clients' , function($id){
+        $projects = User::findOrFail($id)->projects;
+
+        foreach ($projects as $proj){
+            echo Client::findorFail($proj->client_id);
+        }
+    });
 
 
-//The Department list that one user BelongsTo
-Route::get('/user/{id}/departments',function($id){
-    $user_dep = User::findOrFail($id)->departments;
+    //The Department list that one user BelongsTo
+    Route::get('/user/{id}/departments',function($id){
+        $user_dep = User::findOrFail($id)->departments;
 
-    return $user_dep;
-})->middleware('auth:api');
-
-
-
-//The users List under a specific project
-Route::get('/project/{id}/users',function($id){
-    $project_users = Project::findOrFail($id)->users;
-
-    return $project_users;
-})->middleware(['auth:api','isAdmin']);
-
-
-
-
-//The users Under a Department
-Route::get('/department/{id}/users',function($id){
-    $dep_users = Department::findOrFail($id)->users;
-
-    return $dep_users;
-})->middleware(['auth:api','isAdmin']);
-
-
-
-//The List of projects under A departments
-
-Route::get('/department/{id}/projects',function($id){
-    $dep_projs = Department::findOrFail($id)->projects;
-
-    return $dep_projs;
-})->middleware(['auth:api','isAdmin']);
-
-
-//Client List under a Department
-Route::get('/department/{id}/clients',function($id){
-    $dep_clients = Department::findOrFail($id)->clients;
-
-    return $dep_clients;
-})->middleware(['auth:api','isAdmin']);
-
-
-
-//users Under Client
-Route::get('/client/{id}/users',function($id){
-    $department = Client::findOrFail($id)->departments;
+        return $user_dep;
+    });
     
-    $users = Department::findOrFail($department->id)->users;
+});
 
-    return $users;
-})->middleware(['auth:api','isAdmin']);
+
+
+// Admin Access Relational Routes
+
+Route::group(['middleware'=>['auth:api','isAdmin']] , function(){
+
+    //The users List under a specific project
+    Route::get('/project/{id}/users',function($id){
+        $project_users = Project::findOrFail($id)->users;
+
+        return $project_users;
+    });
+
+
+
+    //The users Under a Department
+    Route::get('/department/{id}/users',function($id){
+        $dep_users = Department::findOrFail($id)->users;
+
+        return $dep_users;
+    });
+
+
+
+    //The List of projects under A departments
+
+    Route::get('/department/{id}/projects',function($id){
+        $dep_projs = Department::findOrFail($id)->projects;
+
+        return $dep_projs;
+    });
+
+
+    //Client List under a Department
+    Route::get('/department/{id}/clients',function($id){
+        $dep_clients = Department::findOrFail($id)->clients;
+
+        return $dep_clients;
+    });
+
+
+    //users Under Client
+    Route::get('/client/{id}/users',function($id){
+        $department = Client::findOrFail($id)->departments;
+        
+        $users = Department::findOrFail($department->id)->users;
+
+        return $users;
+
+
+});
+
+
+});
+
+
+
 
