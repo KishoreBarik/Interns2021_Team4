@@ -7,6 +7,9 @@ use App\Http\Controllers\ClientController;
 use App\Http\Controllers\ProjectController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Models\Client;
+use App\Models\Department;
+use App\Models\Project;
 
 /*
 |--------------------------------------------------------------------------
@@ -174,3 +177,22 @@ Route::group(['prefix' => 'projects', 'middleware' => ['auth:api', 'isAdmin']], 
     Route::put('/{id}', [ProjectController::class, 'update'])->name('api.projects.update');
     Route::delete('/{id}', [ProjectController::class, 'destroy'])->name('api.projects.destroy');
 });
+//Relational routes for clients and projects 
+Route::get('/projects/{id}/clients', function ($id) {
+    $projects = Project::find($id);
+    return $projects;
+})->middleware(['auth:api', 'isAdmin']);
+Route::get('/clients/{id}/projects', function ($id) {
+    $clients = Client::find($id);
+    return $clients;
+})->middleware(['auth:api', 'isAdmin']);
+
+Route::get('/project/{id}/department', function ($id) {
+    $client = Project::find($id)->client;
+    $department = Client::find($client->id)->department;
+    return $department;
+})->middleware(['auth:api', 'isAdmin']);
+Route::get('/clients/{id}/departments', function ($id) {
+    $clients = Client::find($id);
+    return $clients;
+})->middleware(['auth:api', 'isAdmin']);
