@@ -17,4 +17,14 @@ class TimeEntry extends Model
         'date',
         'updated_by'
     ];
+
+    public function user(){
+        return $this->belongsTo('App\Models\User','user_id');
+    }
+
+    public function project(){
+        return $this->belongsTo('App\Models\Project','project_id');
+    }
+
+
 }

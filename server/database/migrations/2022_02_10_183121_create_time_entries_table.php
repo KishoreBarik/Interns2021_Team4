@@ -16,11 +16,14 @@ class CreateTimeEntriesTable extends Migration
         Schema::create('time_entries', function (Blueprint $table) {
             $table->increments('id');
             $table->string('task_description');
-            $table->integer('project_id');
-            $table->unsignedInteger('user_id');//fk
+            $table->unsignedInteger('project_id');
+            $table->foreign('project_id')->references('id')->on('projects');
+            $table->unsignedInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users');
             $table->integer('duration_min');
             $table->date('date');
-            $table->unsignedInteger('updated_by');//fk to users
+            $table->unsignedInteger('updated_by');
+            $table->foreign('updated_by')->references('id')->on('users');
             $table->timestamps();
         });
     }

@@ -17,10 +17,10 @@ class DepartmentController extends Controller
      */
     public function index()
     {
-        $all_depatments = Department::all();
+        $allDepartments = Department::all();
         return [
             "message" => 'All Departments',
-            "departments" => CreateDepartmentResource::collection($all_depatments)
+            "departments" => CreateDepartmentResource::collection($allDepartments)
         ];
         //
     }

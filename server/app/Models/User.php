@@ -60,4 +60,10 @@ class User extends Authenticatable
     public function departments(){
         return $this->belongsToMany('App\Models\Department','department_accesses','user_id','department_id');
     }
+
+
+    //One User Having Many TiemEntries
+    public function timeEntries(){
+        return $this->hasMany('App\Models\TimeEntry','user_id');
+    }
 }

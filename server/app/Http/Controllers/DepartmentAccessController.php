@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\CreateDepartmentResource;
+use App\Http\Resources\DepartmentAccessResource;
 use App\Models\Department;
 use App\Models\DepartmentAccess;
 use Illuminate\Http\Request;
@@ -15,9 +17,9 @@ class DepartmentAccessController extends Controller
      */
     public function index()
     {
-        $all_dep = DepartmentAccess::all();
+        $allDepartments = DepartmentAccess::all();
         return[
-            'all department-acceses'=>$all_dep
+            'all department-acceses'=>DepartmentAccessResource::collection($allDepartments)
         ];
     }
 
@@ -28,11 +30,11 @@ class DepartmentAccessController extends Controller
      */
     public function create(Request $request)
     {
-        $department_access = DepartmentAccess::create($request->all());
+        $departmentAccess = DepartmentAccess::create($request->all());
 
         return[
             'message'=>'Department access was given ',
-            'department_access'=>$department_access
+            'department_access'=>new DepartmentAccessResource($departmentAccess)
 
         ];
     }
@@ -45,11 +47,11 @@ class DepartmentAccessController extends Controller
      */
     public function show($id)
     {
-        $department_access = DepartmentAccess::whereId($id)->first();
+        $departmentAccess = DepartmentAccess::whereId($id)->first();
 
         return [
             'message' => 'Required Department access',
-            'department_access'=>$department_access
+            'department_access'=>new DepartmentAccessResource($departmentAccess)
         ];
     }
 
@@ -66,7 +68,7 @@ class DepartmentAccessController extends Controller
 
         return [
             'message'=>'Department Access Updated ',
-            'DepartmentAccess'=>DepartmentAccess::whereId($id)->first()
+            'DepartmentAccess'=>new DepartmentAccessResource(DepartmentAccess::whereId($id)->first())
         ];
     }
 

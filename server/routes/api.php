@@ -7,6 +7,7 @@ use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\TimeEntryController;
 use App\Http\Controllers\UserController;
+use App\Http\Resources\CreateTimeEntryResource;
 use App\Models\Client;
 use App\Models\Department;
 use App\Models\Project;
@@ -29,7 +30,8 @@ use Illuminate\Support\Facades\Route;
     Method     : POST
     Access     : Public
 */
-Route::post('/login' , [AuthController::class , 'login']);
+
+Route::post('/login', [AuthController::class, 'login']);
 
 
 
@@ -39,7 +41,7 @@ Route::post('/login' , [AuthController::class , 'login']);
     Method     : POST
     Access     : Private
 */
-Route::post('/logout' , [AuthController::class , 'logout'])->middleware('auth:api');
+Route::post('/logout', [AuthController::class, 'logout'])->middleware('auth:api');
 
 
 
@@ -52,7 +54,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 
 //ADMIN ACCESS ROUTES 
-Route::group(['prefix' => 'users', 'middleware'=>['auth:api','isAdmin']] , function(){
+Route::group(['prefix' => 'users', 'middleware' => ['auth:api', 'isAdmin']], function () {
 
     /*
     For        : Getting all Users
@@ -70,15 +72,13 @@ Route::group(['prefix' => 'users', 'middleware'=>['auth:api','isAdmin']] , funct
     Access     : Public
     */
     Route::post('/', [UserController::class, 'create'])->name('api.users.create');
-
-
 });
 
 
 
 
 //User/Admin Authenticated Routes
-Route::group(['prefix'=>'users' , 'middleware'=>'auth:api'] , function(){
+Route::group(['prefix' => 'users', 'middleware' => 'auth:api'], function () {
     /*
     For        : Getting Specific User Details
     RouteName  : /{id}
@@ -94,17 +94,17 @@ Route::group(['prefix'=>'users' , 'middleware'=>'auth:api'] , function(){
     Method     : PUT
     Access     : Private
     */
-    Route::put('/{id}' , [UserController::class , 'update'])->name('api.users.update');
+    Route::put('/{id}', [UserController::class, 'update'])->name('api.users.update');
 
 
-    
+
     /*
     For        : Reset the Forget Password
     RouteName  : /{id}
     Method     : PUT
     Access     : Private
-    */ 
-    Route::put('users/{id}/changepassword' , [UserController::class , 'changePassword'])->name('api.users.changePassword')->middleware('auth:api');
+    */
+    Route::put('users/{id}/changepassword', [UserController::class, 'changePassword'])->name('api.users.changePassword')->middleware('auth:api');
 
 
 
@@ -116,16 +116,14 @@ Route::group(['prefix'=>'users' , 'middleware'=>'auth:api'] , function(){
     Method     : PUT
     Access     : Private
     */
-    Route::put('users/{id}/forgetpassword' , [UserController::class , 'forgetPassword'])->name('api.users.forgetPassword')->middleware('auth:api');
-
-
+    Route::put('users/{id}/forgetpassword', [UserController::class, 'forgetPassword'])->name('api.users.forgetPassword')->middleware('auth:api');
 });
 
 
 
 
 //CRUD for Departments
-Route::group(['prefix' => 'departments' , 'middleware'=>['auth:api','isAdmin']], function () {
+Route::group(['prefix' => 'departments', 'middleware' => ['auth:api', 'isAdmin']], function () {
 
     /*
     For        : Getting all Departments Details
@@ -171,14 +169,11 @@ Route::group(['prefix' => 'departments' , 'middleware'=>['auth:api','isAdmin']],
     // Method     : GET
     // Access     : Private
     Route::delete('/{id}', [DepartmentController::class, 'destroy'])->name('api.departments.delete');
-
-
-    
 });
 
 
 
-Route::group(['prefix' => 'clients' ], function () {
+Route::group(['prefix' => 'clients'], function () {
     Route::get('/', [ClientController::class, 'index'])->name('api.clients.index');
     Route::post('/', [ClientController::class, 'create'])->name('api.clients.create');
     Route::get('/{id}', [ClientController::class, 'show'])->name('api.clients.show');
@@ -196,33 +191,81 @@ Route::group(['prefix' => 'projects'], function () {
 
 
 
-//TimeEntry Pulbic Routes
-Route::group(['prefix'=>'timeentries' ,'middleware'=>['auth:api','isAdmin']] ,function(){
-    Route::get('/' , [TimeEntryController::class,'index'])->name('api.timeentries.index');
-    Route::post('/' , [TimeEntryController::class,'create'])->name('api.timeentries.create');
-    Route::get('/{id}' , [TimeEntryController::class,'show'])->name('api.timeentries.show');
-    
-});
+//TimeEntry  Routes
+Route::group(['prefix' => 'timeentries', 'middleware' => ['auth:api']], function () {
 
 
-//TimeEntry Private Routes
 
-Route::group(['prefix'=>'timeentries', 'middleware'=>'auth:api'] , function(){
-    
-    Route::put('/{id}' , [TimeEntryController::class,'update'])->name('api.timeentries.update');
+    // For        : TimeEntries List
+    // RouteName  : /
+    // Method     : GET
+    // Access     : Private
+    Route::get('/', [TimeEntryController::class, 'index'])->name('api.timeentries.index')->middleware('isAdmin');
+
+
+
+    // For        : Create A Particular TimeEntry
+    // RouteName  : /
+    // Method     : POST
+    // Access     : Private
+    Route::post('/', [TimeEntryController::class, 'create'])->name('api.timeentries.create');
+
+
+
+    // For        : Get a Particular TimeEntry
+    // RouteName  : /{id}
+    // Method     : GET
+    // Access     : Private
+    Route::get('/{id}', [TimeEntryController::class, 'show'])->name('api.timeentries.show');
+
+
+    // For        : Edit a Particular TimeEntry
+    // RouteName  : /{id}
+    // Method     : PUT
+    // Access     : Private
+    Route::put('/{id}', [TimeEntryController::class, 'update'])->name('api.timeentries.update');
 });
 
 
 
 //Routes for Department-accesses
-Route::group(['prefix'=>'department-access', 'middleware'=>['auth:api','isAdmin']] , function(){
+Route::group(['prefix' => 'department-access', 'middleware' => ['auth:api', 'isAdmin']], function () {
 
-    Route::get('/', [DepartmentAccessController::class , 'index'])->name('api.department-access.index');
-    Route::post('/', [DepartmentAccessController::class , 'create'])->name('api.department-access.create');
-    Route::get('/{id}', [DepartmentAccessController::class , 'show'])->name('api.department-access.show');
-    Route::put('/{id}', [DepartmentAccessController::class , 'update'])->name('api.department-access.update');
-    Route::delete('/{id}', [DepartmentAccessController::class , 'destroy'])->name('api.department-access.destroy');
 
+    // For        : Total Department Acceses
+    // RouteName  : /
+    // Method     : GET
+    // Access     : Private
+    Route::get('/', [DepartmentAccessController::class, 'index'])->name('api.department-access.index');
+
+
+    // For        : Create a Department Access
+    // RouteName  : /
+    // Method     : POST
+    // Access     : Private
+    Route::post('/', [DepartmentAccessController::class, 'create'])->name('api.department-access.create');
+
+
+    // For        : Get A Particular Department Access
+    // RouteName  : /{id}
+    // Method     : GET
+    // Access     : Private
+    Route::get('/{id}', [DepartmentAccessController::class, 'show'])->name('api.department-access.show');
+
+
+
+    // For        : Edit A Department Access
+    // RouteName  : /{id}
+    // Method     : PUT
+    // Access     : Private
+    Route::put('/{id}', [DepartmentAccessController::class, 'update'])->name('api.department-access.update');
+
+
+    // For        : Delete a Particular DepartmentAccess
+    // RouteName  : /{id}
+    // Method     : DELETE
+    // Access     : Private
+    Route::delete('/{id}', [DepartmentAccessController::class, 'destroy'])->name('api.department-access.destroy');
 });
 
 
@@ -235,89 +278,93 @@ Route::group(['prefix'=>'department-access', 'middleware'=>['auth:api','isAdmin'
 
 //User Accessible Realtional Routes
 
-Route::group(['middleware'=>'auth:api'], function(){
+Route::group(['middleware' => 'auth:api'], function () {
     //Projects under a one particular user
-    Route::get('/user/{id}/projects',function($id){
-        $user_projects = User::findOrFail($id)->projects;
+    Route::get('/user/{id}/projects', function ($id) {
 
-        return $user_projects;
+        $userProjects = User::findOrFail($id)->projects;
+        return $userProjects;
     });
 
 
     //The client list belongs to the user
-    Route::get('/user/{id}/clients' , function($id){
+    Route::get('/user/{id}/clients', function ($id) {
+
         $projects = User::findOrFail($id)->projects;
 
-        foreach ($projects as $proj){
+        foreach ($projects as $proj) {
             echo Client::findorFail($proj->client_id);
         }
     });
 
 
     //The Department list that one user BelongsTo
-    Route::get('/user/{id}/departments',function($id){
-        $user_dep = User::findOrFail($id)->departments;
+    Route::get('/user/{id}/departments', function ($id) {
 
-        return $user_dep;
+        $userDepartment = User::findOrFail($id)->departments;
+        return $userDepartment;
+
     });
-    
+
+    Route::get('/user/{id}/timeentries', function ($id) {
+        $timeEntryList = User::findOrFail($id)->timeentries;
+
+        return [
+            'TimeEntries' => CreateTimeEntryResource::collection($timeEntryList)
+        ];
+    });
 });
 
 
 
 // Admin Access Relational Routes
 
-Route::group(['middleware'=>['auth:api','isAdmin']] , function(){
+Route::group(['middleware' => ['auth:api', 'isAdmin']], function () {
 
     //The users List under a specific project
-    Route::get('/project/{id}/users',function($id){
-        $project_users = Project::findOrFail($id)->users;
+    Route::get('/project/{id}/users', function ($id) {
+        $projectUsers = Project::findOrFail($id)->users;
 
-        return $project_users;
+        return $projectUsers;
     });
 
 
 
     //The users Under a Department
-    Route::get('/department/{id}/users',function($id){
-        $dep_users = Department::findOrFail($id)->users;
+    Route::get('/department/{id}/users', function ($id) {
 
-        return $dep_users;
+        $depUsers = Department::findOrFail($id)->users;
+
+        return $depUsers;
+
     });
 
 
 
     //The List of projects under A departments
 
-    Route::get('/department/{id}/projects',function($id){
-        $dep_projs = Department::findOrFail($id)->projects;
+    Route::get('/department/{id}/projects', function ($id) {
 
-        return $dep_projs;
+        $depProjects = Department::findOrFail($id)->projects;
+
+        return $depProjects;
     });
 
 
     //Client List under a Department
-    Route::get('/department/{id}/clients',function($id){
-        $dep_clients = Department::findOrFail($id)->clients;
+    Route::get('/department/{id}/clients', function ($id) {
+        $depClients = Department::findOrFail($id)->clients;
 
-        return $dep_clients;
+        return $depClients;
     });
 
 
     //users Under Client
-    Route::get('/client/{id}/users',function($id){
+    Route::get('/client/{id}/users', function ($id) {
         $department = Client::findOrFail($id)->departments;
-        
+
         $users = Department::findOrFail($department->id)->users;
 
         return $users;
-
-
+    });
 });
-
-
-});
-
-
-
-

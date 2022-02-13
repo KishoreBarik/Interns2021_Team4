@@ -14,4 +14,17 @@ class DepartmentAccess extends Model
         'user_id',
         'status'
     ];
+
+
+    //Department Details 
+    public function department(){
+        return $this->belongsTo('App\Models\Department','department_id');
+    }
+
+
+    //User Details
+    public function user(){
+        return $this->belongsTo('App\Models\User','user_id');
+    }
+
 }

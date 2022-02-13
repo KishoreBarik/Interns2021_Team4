@@ -18,8 +18,9 @@ class CreateDepartmentsTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->string('description');
-            $table->integer('added_by'); //fk to users
-            $table->enum('status',['active','inactive'])->default('active');;
+            $table->unsignedInteger('added_by');
+            $table->foreign('added_by')->references('id')->on('users');
+            $table->enum('status',['active','inactive'])->default('active');
             $table->timestamps();
         });
     }

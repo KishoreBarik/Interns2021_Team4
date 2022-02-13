@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\CreateTimeEntryResource;
 use App\Models\TimeEntry;
 use Illuminate\Http\Request;
 
@@ -14,10 +15,10 @@ class TimeEntryController extends Controller
      */
     public function index()
     {
-        $time_entry_list = TimeEntry::all();
+        $timeEntryList = TimeEntry::all();
         return [
             'message'=>'All Time Entries List',
-            $time_entry_list
+            'timeEntries'=>CreateTimeEntryResource::collection($timeEntryList)
         ];
     }
 
@@ -28,10 +29,10 @@ class TimeEntryController extends Controller
      */
     public function create(Request $request)
     {
-        $time_entry = TimeEntry::create($request->all());
+        $timeEntry = TimeEntry::create($request->all());
         return [
             'message'=>'TimeEntry Added',
-            'time_entry'=>$time_entry
+            'timeEntry'=>new CreateTimeEntryResource($timeEntry)
         ];
     }
 
@@ -43,11 +44,11 @@ class TimeEntryController extends Controller
      */
     public function show($id)
     {
-        $time_entry = TimeEntry::whereId($id)->first();
+        $timeEntry = TimeEntry::whereId($id)->first();
 
         return[
             'message'=>'Required TimeEntry',
-            'time_entry'=>$time_entry
+            'timeEntry'=>new CreateTimeEntryResource($timeEntry)
         ];
     }
 
@@ -61,11 +62,11 @@ class TimeEntryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $time_entry = TimeEntry::whereId($id)->update($request->all());
+        $timeEntry = TimeEntry::whereId($id)->update($request->all());
 
         return[
             'message'=>'Time Entry Updated',
-            'TimeEntry'=>TimeEntry::whereId($id)->first()
+            'TimeEntry'=>new CreateTimeEntryResource(TimeEntry::whereId($id)->first())
         ];
     }
 
