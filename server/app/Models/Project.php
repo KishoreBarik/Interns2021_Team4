@@ -8,5 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Project extends Model
 {
     use HasFactory;
-    protected $fillable =['name', 'description','client_id','updated_at', 'created_at' , 'added_by', 'status'];
+    protected $fillable = ['name', 'description', 'client_id', 'updated_at', 'created_at', 'added_by', 'status'];
+    public function client()
+    {
+        return $this->belongsTo(Client::class);
+    }
 }

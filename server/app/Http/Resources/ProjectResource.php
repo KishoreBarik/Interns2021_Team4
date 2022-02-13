@@ -15,11 +15,11 @@ class ProjectResource extends JsonResource
     public function toArray($request)
     {
         return [
-            'project_id'=>$this->id,
-            'project_name'=>$this->name,
-            'description'=>$this->description,
-            'client_id'=>$this->client_id,
-            'status'=>$this->status,
+            'ProjectId' => $this->id,
+            'ProjectName' => $this->name,
+            'description' => $this->description,
+            'ClientId' => $this->client_id,
+            'status' => $this->status,
         ];
     }
 }

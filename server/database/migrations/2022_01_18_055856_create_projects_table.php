@@ -18,9 +18,10 @@ class CreateProjectsTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->string('description');
-            $table->unsignedInteger('client_id');//foreign key clients
+            $table->unsignedInteger('client_id'); //foreign key clients
+            $table->foreign('client_id')->references('id')->on('clients');
             $table->integer('added_by'); //fk to users
-            $table->enum('status',['active','inactive'])->default('active');
+            $table->enum('status', ['active', 'inactive'])->default('active');
             $table->timestamps();
         });
     }
