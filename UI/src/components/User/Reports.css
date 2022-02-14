@@ -1,6 +1,1 @@
-.selectdate{
-width: 20;
-}
-Card.Title{
-    text-align: left;
-}
+@import url("https://cdn.syncfusion.com/ej2/material.css");

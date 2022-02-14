@@ -127,6 +127,8 @@ class LoginPage extends Component {
 
                 <div className="link mt-2">
                   <Link to="/forgotpassword">Forgot Password</Link>
+                  <br/>
+                  <Link to="/admindashboard">Admin</Link>
                 </div>
               </div>
             </div>

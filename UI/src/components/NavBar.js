@@ -6,6 +6,7 @@ import "../../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import "./NavBar.css";
 
 function NavBar(props) {
+  const {config} = props;
   return (
     <div className="nav-container">
       <div className="row">
@@ -23,15 +24,17 @@ function NavBar(props) {
             </Navbar.Brand>
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav" className="nav-elements">
-              <Nav className="mr-auto active">
-                <Nav.Link href="/user/dashboard">{props.navElement}</Nav.Link>
-              </Nav>
-              <Nav className="mr-auto">
-                <Nav.Link href="/Reports">{props.navElement1}</Nav.Link>
-              </Nav>
-              <Nav className="mr-auto">
-                <Nav.Link href="/user/dashboard">{props.navElement2}</Nav.Link>
-              </Nav>
+              {!!config && config?.map((routeObj) => {
+                const {label, route, submenu} = routeObj;
+                return (<Nav className="mr-auto">
+                <Nav.Link href={"/" + route}>{label}</Nav.Link>
+                {!!submenu && {
+                  
+                }}
+              </Nav>)
+
+              })}
+             
               <Nav className="mr-auto">
                 <NavDropdown
                   title={<BsPersonFill size={25} />}

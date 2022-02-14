@@ -10,10 +10,7 @@ class Dashboard extends Component {
     return (
       <div>
         <NavBar
-          navElement="Dashboard"
-          navElement1="Report"
-          navElement2="Monthly Report"
-          username="Username"
+          config={[{route: "reports", label: "Reports", submenu:  {}}, {route: "user/dashboard", label: "Dashboard"}]}
           logout="Log Out"
         />
         <div class="m-5">
