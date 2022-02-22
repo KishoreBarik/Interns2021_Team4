@@ -6,7 +6,10 @@ import { Navbar,Nav,NavItem,NavbarBrand,Container, Button } from "react-bootstra
 
 const Heading=()=>{
     return(
-        <div>
+        <div className="container">
+            <div className="row">
+                <div className="col"></div>
+                <div className="col-7">
             <Navbar>
                 <Container>
                     <NavbarBrand href="/admindashboard">My Team</NavbarBrand>
@@ -17,6 +20,9 @@ const Heading=()=>{
                     </Nav>
                 </Container>
             </Navbar>
+            </div>
+            <div className="col"></div>
+            </div>
         </div>
     );
 }

@@ -10,12 +10,16 @@ const AddUser=()=>{
     
     const {addUser}=useContext(GlobalContext);
     const[name,setName]=useState('');
+    const[lastname,setLastname]=useState('');
+    const[emailid,setEmailId]=useState('');
     const  navigate = useNavigate();
 
     const onSubmit = () =>{
         const newUser={
             id:uuid(),
-            name:name
+            name:name,
+            last:lastname,
+            email:emailid,
         }
         addUser(newUser);
        navigate('/admindashboard')
@@ -25,21 +29,52 @@ const AddUser=()=>{
         setName(e.target.value);
     }
 
+    const handlechange=(e)=>{
+        setLastname(e.target.value);
+    }
+
+    const handleemail=(e)=>{
+        setEmailId(e.target.value);
+    }   
+
+    
+
+
     return(
-        <div>
+        <div className="container">
+            <div className="row">
+                <div className="col"></div>
+            <div className="col-7">
         <Form onSubmit={onSubmit}>
             <FormGroup>
-                <FormLabel>Name</FormLabel>
+                <FormLabel><strong>ADD USER</strong></FormLabel>
                 <FormControl 
                 type="text" 
-                placeholder="Enter Name"
+                placeholder="First Name"
                 value={name}
                 onChange={onChange}/>
-            </FormGroup>
+            </FormGroup><br/>
+            <FormControl 
+                type="text" 
+                placeholder="Last Name"
+                value={lastname}
+                onChange={handlechange}/><br/>
+
+            <FormControl 
+            type="email"
+            placeholder="Enter email id"
+            value={emailid}
+            onChange={handleemail}/><br/>
+
+           
+
         <br/>
         <Button type="submit">ADD USER</Button>&nbsp;
         <Link to="homepage" className="btn btn-danger ">Cancel</Link>
         </Form>
+        </div>
+        <div className="col"></div>
+        </div>
         </div>
     );
 }

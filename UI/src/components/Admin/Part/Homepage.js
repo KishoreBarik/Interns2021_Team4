@@ -6,8 +6,6 @@ import Heading from "./Heading";
 
 
 const Homepage=()=>{
-   
-
     return(
         <div>
            <Heading></Heading>

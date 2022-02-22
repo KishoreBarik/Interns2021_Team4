@@ -10,12 +10,17 @@ const UserList=()=>{
     console.log(users);
 
     return(
-        <div>
+        <div className="Container">
+            <div className="row">
+                <div className="col">
+                </div>
+                <div className="col-7">
             <ListGroup className="mt-4">
                 {users.map(user=>(
                       <ListGroupItem className="d-flex">
-                      <strong>{user.name}</strong>
-                      <div className="ml-auto"> &nbsp;
+                      <strong>{user.name}   {user.last}    {user.email}
+                      </strong>
+                      <div className="jss"> &nbsp;
                           <Link  className="btn btn-primary mr-1" to={`/edit/${
                               user.id}`}>Edit</Link>&nbsp;
                           <Button onClick={() => removeUser(user.id)} 
@@ -24,6 +29,9 @@ const UserList=()=>{
                       </ListGroupItem>
                 ))}
             </ListGroup>
+            </div>
+            <div className="col"></div>
+            </div>
         </div>
     );
 }
