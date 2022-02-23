@@ -39,13 +39,20 @@ class Dashboard extends Component {
           username="Username"
           logout="Log Out"
         />
-        <div>
-          <DatePicker
-            selected={this.state.startDate}
-            onChange={this.handleChange}
-            name="startDate"
-            dateFormat="MM/dd/yyyy"
-          />
+        <div class="date-picker-container">
+          <div>
+            <h5>Select Date:</h5>
+          </div>
+          <div class="row">
+            <div class="col-12">
+              <DatePicker
+                selected={this.state.startDate}
+                onChange={this.handleChange}
+                name="startDate"
+                dateFormat="dd/MM/yyyy"
+              />
+            </div>
+          </div>
         </div>
         <div class="m-5">
           <div class="row">
