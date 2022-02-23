@@ -17,6 +17,9 @@ import Homepage from "./components/Admin/Part/Homepage";
 import Heading from "./components/Admin/Part/Heading";
 import UserList from "./components/Admin/Part/UserList";
 import {GlobalProvider} from "./components/Admin/Context/GlobalState";
+import Admin from "./components/Admin/Admin";
+import Adminhead from "./components/Admin/AdminHead";
+import { DepartmentProvider} from "./components/Admin/Context/DeptState";
 
 
 
@@ -25,6 +28,7 @@ function App() {
     <div>
       <div className="text-center d-flex flex-column justify-content-center">
         <GlobalProvider>
+          <DepartmentProvider>
         <Routes>
           <Route exact path="/" element={<LoginPage />} />
           <Route exact path="/loginpage" element={<LoginPage />} />
@@ -37,9 +41,8 @@ function App() {
           <Route exact path="/homepage"  element={<Homepage />} />
           <Route exact path="/heading"  element={<Heading/>} />
           <Route exact path="/userlist"  element={<UserList />} />
-          
-
-
+          <Route exact path="/admin"  element={<Admin />} />
+          <Route exact path="/adminhead"  element={<Adminhead />} />
           <Route path="/Reports" exact element={<Reports />} />
           <Route path="/Reports" exact element={<Reports />} />
           <Route path="pages/MonthlyReport" exact element={<MonthlyReport />} />
@@ -47,7 +50,7 @@ function App() {
           <Route path="/project1" element={<Project1/>}></Route>
         </Routes>
 
-        
+        </DepartmentProvider>
         </GlobalProvider>
       </div>
     </div>

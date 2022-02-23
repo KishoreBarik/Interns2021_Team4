@@ -5,6 +5,8 @@ import { Link } from "react-router-dom";
 import { GlobalContext } from "../Context/GlobalState";
 import { useNavigate } from 'react-router-dom';
 import {v4 as uuid } from "uuid";
+import Admin from "../Admin";
+
     
 const AddUser=()=>{
     
@@ -41,6 +43,8 @@ const AddUser=()=>{
 
 
     return(
+        <div>
+             <Admin></Admin><br/>
         <div className="container">
             <div className="row">
                 <div className="col"></div>
@@ -54,6 +58,7 @@ const AddUser=()=>{
                 value={name}
                 onChange={onChange}/>
             </FormGroup><br/>
+
             <FormControl 
                 type="text" 
                 placeholder="Last Name"
@@ -70,10 +75,11 @@ const AddUser=()=>{
 
         <br/>
         <Button type="submit">ADD USER</Button>&nbsp;
-        <Link to="homepage" className="btn btn-danger ">Cancel</Link>
+        <Link to="/Admindashboard" className="btn btn-danger ">Cancel</Link>
         </Form>
         </div>
         <div className="col"></div>
+        </div>
         </div>
         </div>
     );

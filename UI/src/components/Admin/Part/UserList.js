@@ -16,6 +16,7 @@ const UserList=()=>{
                 </div>
                 <div className="col-7">
             <ListGroup className="mt-4">
+            <Link className="jhhh" to="/adduser">Add User</Link>
                 {users.map(user=>(
                       <ListGroupItem className="d-flex">
                       <strong>{user.name}   {user.last}    {user.email}

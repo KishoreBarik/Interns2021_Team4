@@ -7,9 +7,15 @@ export default (state,action)=>{
                 })
             }
         
+        
         case 'ADD_USER':
             return{
                 users:[action.payload,...state.users]
+            }
+
+        case 'DEPARTMENT_NAME':
+            return{
+                depart:[action.payload,...state.depart]
             }
         
         case 'EDIT_USER':

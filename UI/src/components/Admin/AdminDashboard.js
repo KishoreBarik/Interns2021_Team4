@@ -8,11 +8,8 @@ const AdminDashboard=()=>{
     return(
         
         <div>
-            <NavBar></NavBar>
            <Homepage></Homepage>
-            </div>
-        
-        
+            </div>   
     );
 }
 

@@ -10,14 +10,19 @@ const intialState={
     ]
 };
 
+
+
 //create Context
 
 export const GlobalContext = createContext(intialState);
+
 
 //provider Component
 
 export const  GlobalProvider=({children}) =>{
     const [state,dispatch]=useReducer(AppReducer,intialState);
+
+
 
 //to delete user actions
 
@@ -44,12 +49,15 @@ const editUser =(user)=>{
         payload:user
     })
 }
+
+
     return(
         <GlobalContext.Provider value={{
             users:state.users,
             removeUser:removeUser,
             addUser,
-            editUser
+            editUser,
+            
             
         }}>
             {children}
