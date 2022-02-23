@@ -1,5 +1,7 @@
 import React, { Component } from "react";
+import DatePicker from "react-datepicker";
 import { Accordion } from "react-bootstrap";
+import "react-datepicker/dist/react-datepicker.css";
 import "../../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import "./Dashboard.css";
 import NavBar from "./NavBar";
@@ -15,6 +17,18 @@ class Dashboard extends Component {
     taskDetails.classList.add("p-2 m-2");
     task.appendChild(taskDetails);
   }
+  constructor(props) {
+    super(props);
+    this.state = {
+      startDate: new Date(),
+    };
+    this.handleChange = this.handleChange.bind(this);
+  }
+  handleChange(date) {
+    this.setState({
+      startDate: date,
+    });
+  }
   render() {
     return (
       <div>
@@ -25,6 +39,14 @@ class Dashboard extends Component {
           username="Username"
           logout="Log Out"
         />
+        <div>
+          <DatePicker
+            selected={this.state.startDate}
+            onChange={this.handleChange}
+            name="startDate"
+            dateFormat="MM/dd/yyyy"
+          />
+        </div>
         <div class="m-5">
           <div class="row">
             <div class="col-sm-6">
