@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ClientController;
 use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\ProjectController;
@@ -9,21 +10,43 @@ use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
-| API Routes
+| API Routes                                                               
 |--------------------------------------------------------------------------
-|
-| Here is where you can register API routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| is assigned the "api" middleware group. Enjoy building your API!
-|
 */
 
-// Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-//     return $request->user();
-// });
 
-// CRUD routes & Other routes  for Users
-Route::group(['prefix' => 'users'] , function(){
+
+
+/*
+    For        : Login
+    RouteName  : /login
+    Method     : POST
+    Access     : Public
+*/
+Route::post('/login' , [AuthController::class , 'login']);
+
+
+
+/*
+    For        : Logout
+    RouteName  : /logout
+    Method     : POST
+    Access     : Private
+*/
+Route::post('/logout' , [AuthController::class , 'logout'])->middleware('auth:api');
+
+
+
+
+//Getting Authenticated User Details
+Route::middleware('auth:api')->get('/user', function (Request $request) {
+    return $request->user();
+});
+
+
+
+//ADMIN ACCESS ROUTES 
+Route::group(['prefix' => 'users', 'middleware'=>['auth:api','isAdmin']] , function(){
 
     /*
     For        : Getting all Users
@@ -32,7 +55,6 @@ Route::group(['prefix' => 'users'] , function(){
     Access     : Private
     */
     Route::get('/', [UserController::class, 'index'])->name('api.users.index');
-
 
 
     /*
@@ -44,6 +66,13 @@ Route::group(['prefix' => 'users'] , function(){
     Route::post('/', [UserController::class, 'create'])->name('api.users.create');
 
 
+});
+
+
+
+
+//User/Admin Authenticated Routes
+Route::group(['prefix'=>'users' , 'middleware'=>'auth:api'] , function(){
     /*
     For        : Getting Specific User Details
     RouteName  : /{id}
@@ -62,16 +91,14 @@ Route::group(['prefix' => 'users'] , function(){
     Route::put('/{id}' , [UserController::class , 'update'])->name('api.users.update');
 
 
-
-
-
+    
     /*
     For        : Reset the Forget Password
     RouteName  : /{id}
     Method     : PUT
     Access     : Private
     */ 
-    Route::put('/{id}/changepassword' , [UserController::class , 'changePassword'])->name('api.users.changePassword');
+    Route::put('users/{id}/changepassword' , [UserController::class , 'changePassword'])->name('api.users.changePassword')->middleware('auth:api');
 
 
 
@@ -83,10 +110,7 @@ Route::group(['prefix' => 'users'] , function(){
     Method     : PUT
     Access     : Private
     */
-    Route::put('/{id}/forgetpassword' , [UserController::class , 'forgetPassword'])->name('api.users.forgetPassword');
-    
-
-
+    Route::put('users/{id}/forgetpassword' , [UserController::class , 'forgetPassword'])->name('api.users.forgetPassword')->middleware('auth:api');
 
 
 });
@@ -94,10 +118,8 @@ Route::group(['prefix' => 'users'] , function(){
 
 
 
-
-
 //CRUD for Departments
-Route::group(['prefix' => 'departments'], function () {
+Route::group(['prefix' => 'departments' , 'middleware'=>['auth:api','isAdmin']], function () {
 
     /*
     For        : Getting all Departments Details
@@ -143,9 +165,14 @@ Route::group(['prefix' => 'departments'], function () {
     // Method     : GET
     // Access     : Private
     Route::delete('/{id}', [DepartmentController::class, 'destroy'])->name('api.departments.delete');
+
+
+    
 });
 
-Route::group(['prefix' => 'clients'], function () {
+
+
+Route::group(['prefix' => 'clients' ], function () {
     Route::get('/', [ClientController::class, 'index'])->name('api.clients.index');
     Route::post('/', [ClientController::class, 'create'])->name('api.clients.create');
     Route::get('/{id}', [ClientController::class, 'show'])->name('api.clients.show');
