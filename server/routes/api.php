@@ -11,7 +11,9 @@ use App\Http\Resources\CreateTimeEntryResource;
 use App\Models\Client;
 use App\Models\Department;
 use App\Models\Project;
+use App\Models\TimeEntry;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -279,7 +281,12 @@ Route::group(['prefix' => 'department-access', 'middleware' => ['auth:api', 'isA
 //User Accessible Realtional Routes
 
 Route::group(['middleware' => 'auth:api'], function () {
-    //Projects under a one particular user
+
+
+    // For        : Delete a Particular DepartmentAccess
+    // RouteName  : /{id}
+    // Method     : DELETE
+    // Access     : Private
     Route::get('/user/{id}/projects', function ($id) {
 
         $userProjects = User::findOrFail($id)->projects;
@@ -287,7 +294,12 @@ Route::group(['middleware' => 'auth:api'], function () {
     });
 
 
-    //The client list belongs to the user
+
+
+    // For        : Delete a Particular DepartmentAccess
+    // RouteName  : /{id}
+    // Method     : DELETE
+    // Access     : Private
     Route::get('/user/{id}/clients', function ($id) {
 
         $projects = User::findOrFail($id)->projects;
@@ -298,7 +310,13 @@ Route::group(['middleware' => 'auth:api'], function () {
     });
 
 
-    //The Department list that one user BelongsTo
+
+
+
+    // For        : Delete a Particular DepartmentAccess
+    // RouteName  : /{id}
+    // Method     : DELETE
+    // Access     : Private
     Route::get('/user/{id}/departments', function ($id) {
 
         $userDepartment = User::findOrFail($id)->departments;
@@ -306,6 +324,12 @@ Route::group(['middleware' => 'auth:api'], function () {
 
     });
 
+
+
+    // For        : Delete a Particular DepartmentAccess
+    // RouteName  : /{id}
+    // Method     : DELETE
+    // Access     : Private
     Route::get('/user/{id}/timeentries', function ($id) {
         $timeEntryList = User::findOrFail($id)->timeentries;
 
@@ -313,15 +337,42 @@ Route::group(['middleware' => 'auth:api'], function () {
             'TimeEntries' => CreateTimeEntryResource::collection($timeEntryList)
         ];
     });
+
+
+
+
+
+    // For        : Delete a Particular DepartmentAccess
+    // RouteName  : /{id}
+    // Method     : DELETE
+    // Access     : Private
+    Route::get('/user/{id}/month/{num}/report' , function ($id , $num){
+        $userTimeEntries = User::findOrFail($id)->timeentries;
+        $report_list =[];
+        foreach ($userTimeEntries as $timeEntry){
+            $month = Carbon::parse($timeEntry->date)->format('m');
+            if($num == $month){
+                array_push($report_list,$timeEntry);
+            }
+        }
+
+        return [
+            'month_report'=>CreateTimeEntryResource::collection($report_list)
+        ];
+    });
 });
 
 
 
 // Admin Access Relational Routes
-
 Route::group(['middleware' => ['auth:api', 'isAdmin']], function () {
 
-    //The users List under a specific project
+
+
+    // For        : Delete a Particular DepartmentAccess
+    // RouteName  : /{id}
+    // Method     : DELETE
+    // Access     : Private
     Route::get('/project/{id}/users', function ($id) {
         $projectUsers = Project::findOrFail($id)->users;
 
@@ -330,7 +381,10 @@ Route::group(['middleware' => ['auth:api', 'isAdmin']], function () {
 
 
 
-    //The users Under a Department
+    // For        : Delete a Particular DepartmentAccess
+    // RouteName  : /{id}
+    // Method     : DELETE
+    // Access     : Private
     Route::get('/department/{id}/users', function ($id) {
 
         $depUsers = Department::findOrFail($id)->users;
@@ -341,8 +395,11 @@ Route::group(['middleware' => ['auth:api', 'isAdmin']], function () {
 
 
 
-    //The List of projects under A departments
 
+    // For        : Delete a Particular DepartmentAccess
+    // RouteName  : /{id}
+    // Method     : DELETE
+    // Access     : Private
     Route::get('/department/{id}/projects', function ($id) {
 
         $depProjects = Department::findOrFail($id)->projects;
@@ -351,7 +408,13 @@ Route::group(['middleware' => ['auth:api', 'isAdmin']], function () {
     });
 
 
-    //Client List under a Department
+
+
+
+    // For        : Delete a Particular DepartmentAccess
+    // RouteName  : /{id}
+    // Method     : DELETE
+    // Access     : Private
     Route::get('/department/{id}/clients', function ($id) {
         $depClients = Department::findOrFail($id)->clients;
 
@@ -359,7 +422,13 @@ Route::group(['middleware' => ['auth:api', 'isAdmin']], function () {
     });
 
 
-    //users Under Client
+
+
+
+    // For        : Delete a Particular DepartmentAccess
+    // RouteName  : /{id}
+    // Method     : DELETE
+    // Access     : Private
     Route::get('/client/{id}/users', function ($id) {
         $department = Client::findOrFail($id)->departments;
 

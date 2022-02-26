@@ -3,6 +3,7 @@
 namespace App\Http\Resources;
 
 use App\Models\TimeEntry;
+use Carbon\Carbon;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class CreateTimeEntryResource extends JsonResource
@@ -17,7 +18,7 @@ class CreateTimeEntryResource extends JsonResource
     {   
         return[
             'id'=>$this->id,
-            'date'=>$this->date,
+            'date'=>Carbon::parse($this->date)->format('d/m/y'),
             'task_description'=>$this->task_description,
             'duration'=>round(($this->duration_min)/60,2)."Hrs",
             'user_name'=>TimeEntry::findOrFail($this->id)->user->user_name,
