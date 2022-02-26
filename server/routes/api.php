@@ -283,9 +283,9 @@ Route::group(['prefix' => 'department-access', 'middleware' => ['auth:api', 'isA
 Route::group(['middleware' => 'auth:api'], function () {
 
 
-    // For        : Delete a Particular DepartmentAccess
+    // For        : Required User Projects
     // RouteName  : /{id}
-    // Method     : DELETE
+    // Method     : GET
     // Access     : Private
     Route::get('/user/{id}/projects', function ($id) {
 
@@ -296,9 +296,9 @@ Route::group(['middleware' => 'auth:api'], function () {
 
 
 
-    // For        : Delete a Particular DepartmentAccess
+    // For        : The client list that one user is belongs to
     // RouteName  : /{id}
-    // Method     : DELETE
+    // Method     : GET
     // Access     : Private
     Route::get('/user/{id}/clients', function ($id) {
 
@@ -313,9 +313,9 @@ Route::group(['middleware' => 'auth:api'], function () {
 
 
 
-    // For        : Delete a Particular DepartmentAccess
+    // For        : Department list that one user is belongs to
     // RouteName  : /{id}
-    // Method     : DELETE
+    // Method     : GET
     // Access     : Private
     Route::get('/user/{id}/departments', function ($id) {
 
@@ -326,9 +326,9 @@ Route::group(['middleware' => 'auth:api'], function () {
 
 
 
-    // For        : Delete a Particular DepartmentAccess
+    // For        : Required TimeEntries of a partiular user
     // RouteName  : /{id}
-    // Method     : DELETE
+    // Method     : GET
     // Access     : Private
     Route::get('/user/{id}/timeentries', function ($id) {
         $timeEntryList = User::findOrFail($id)->timeentries;
@@ -342,9 +342,9 @@ Route::group(['middleware' => 'auth:api'], function () {
 
 
 
-    // For        : Delete a Particular DepartmentAccess
+    // For        : Specific User report for a slected month
     // RouteName  : /{id}
-    // Method     : DELETE
+    // Method     : GET
     // Access     : Private
     Route::get('/user/{id}/month/{num}/report' , function ($id , $num){
         $userTimeEntries = User::findOrFail($id)->timeentries;
@@ -369,9 +369,9 @@ Route::group(['middleware' => ['auth:api', 'isAdmin']], function () {
 
 
 
-    // For        : Delete a Particular DepartmentAccess
+    // For        : Users list that A specific project Have
     // RouteName  : /{id}
-    // Method     : DELETE
+    // Method     : GET
     // Access     : Private
     Route::get('/project/{id}/users', function ($id) {
         $projectUsers = Project::findOrFail($id)->users;
@@ -381,9 +381,9 @@ Route::group(['middleware' => ['auth:api', 'isAdmin']], function () {
 
 
 
-    // For        : Delete a Particular DepartmentAccess
+    // For        : User List that A Specific Department had
     // RouteName  : /{id}
-    // Method     : DELETE
+    // Method     : GET
     // Access     : Private
     Route::get('/department/{id}/users', function ($id) {
 
@@ -396,9 +396,9 @@ Route::group(['middleware' => ['auth:api', 'isAdmin']], function () {
 
 
 
-    // For        : Delete a Particular DepartmentAccess
+    // For        : Total projects under a specific department
     // RouteName  : /{id}
-    // Method     : DELETE
+    // Method     : GET
     // Access     : Private
     Route::get('/department/{id}/projects', function ($id) {
 
@@ -411,9 +411,9 @@ Route::group(['middleware' => ['auth:api', 'isAdmin']], function () {
 
 
 
-    // For        : Delete a Particular DepartmentAccess
+    // For        : Client List that Specific Department had
     // RouteName  : /{id}
-    // Method     : DELETE
+    // Method     : GET
     // Access     : Private
     Route::get('/department/{id}/clients', function ($id) {
         $depClients = Department::findOrFail($id)->clients;
@@ -425,9 +425,9 @@ Route::group(['middleware' => ['auth:api', 'isAdmin']], function () {
 
 
 
-    // For        : Delete a Particular DepartmentAccess
+    // For        : User List that a specific Client had
     // RouteName  : /{id}
-    // Method     : DELETE
+    // Method     : GET
     // Access     : Private
     Route::get('/client/{id}/users', function ($id) {
         $department = Client::findOrFail($id)->departments;
