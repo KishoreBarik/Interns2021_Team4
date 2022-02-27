@@ -6,18 +6,18 @@ import {v4 as uuid } from "uuid";
 import { Form,FormLabel,FormControl,Button, FormGroup } from "react-bootstrap";
 import { DepartmentContext } from "./Context/DeptState";
 import Table from 'react-bootstrap/Table';
-import { useNavigate } from 'react-router-dom';
 import Admin from "./Admin";
 
 
 const AdminHead=()=>{
     const {depart}=useContext(DepartmentContext);
     console.log(depart);
+    
 
         const {departmentName}=useContext(DepartmentContext);
         
         const [show, setShow] = useState(false);
-        const  navigate = useNavigate();
+    
         const[department,setDepartment]=useState('');
         const handleClose = () => setShow(false);
         const handleShow = () => setShow(true);
@@ -29,7 +29,7 @@ const AdminHead=()=>{
             dept:department, 
         }
         departmentName(newDept);
-        navigate('/Adminhead')
+        
     }
 
     const onChange =(e)=>{
@@ -59,8 +59,8 @@ const AdminHead=()=>{
              <tbody>
              {depart.map(departs=>(
                    <tr>
-                       <td><strong>{1}</strong></td>
-                       <td><strong>{depart.dept}</strong></td>
+                       <td><strong>{departs.id}</strong></td>
+                       <td><strong>{departs.dept}</strong></td>
                     </tr>
                     ))}
              </tbody>

@@ -1,9 +1,9 @@
 import React, {useContext,useState,useEffect} from "react"
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Form,FormLabel,FormControl,Button, FormGroup } from "react-bootstrap";
-import { Link ,useParams} from "react-router-dom";
+import { Link ,useParams,useLocation} from "react-router-dom";
 import { GlobalContext } from "../Context/GlobalState";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate} from 'react-router-dom';
 import {v4 as uuid } from "uuid";
 
 const EditUser=(props)=>{
@@ -14,13 +14,16 @@ const EditUser=(props)=>{
         name:'',
     });
     const  navigate = useNavigate();
+    const {id} =useParams();
+    const currentUserId=JSON.stringify({id});
     
-    const currentUserId=props.id;
 
     useEffect(()=>{
         const userId=currentUserId;
-        const selectedUser=users.find(user=>user.id===userId);
-        //setSelectedUser(selectedUser);
+
+        const selectedUser=users.find(user=>user.id===Number(userId));
+        
+        setSelectedUser(selectedUser);
         },[currentUserId,users])
 
     const onSubmit = () =>{
@@ -34,13 +37,13 @@ const EditUser=(props)=>{
 
     return(
         <div>
+            client-stufff:{id}
              <Form onSubmit={onSubmit}>
             <FormGroup>
                 <FormLabel>Name</FormLabel>
                 <FormControl
                   type="text"
                   placeholder="Enter Name"
-                  value={selectedUser.name}
                   onChange={onChange}/>
             </FormGroup>
         <br/>

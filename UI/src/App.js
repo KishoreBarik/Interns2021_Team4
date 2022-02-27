@@ -27,8 +27,9 @@ function App() {
   return (
     <div>
       <div className="text-center d-flex flex-column justify-content-center">
+      <DepartmentProvider>
         <GlobalProvider>
-          <DepartmentProvider>
+         
         <Routes>
           <Route exact path="/" element={<LoginPage />} />
           <Route exact path="/loginpage" element={<LoginPage />} />
@@ -50,8 +51,9 @@ function App() {
           <Route path="/project1" element={<Project1/>}></Route>
         </Routes>
 
-        </DepartmentProvider>
+        
         </GlobalProvider>
+        </DepartmentProvider>
       </div>
     </div>
   );

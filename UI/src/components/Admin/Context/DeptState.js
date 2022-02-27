@@ -16,8 +16,9 @@ export const  DepartmentProvider=({children}) =>{
 const departmentName =(departs)=>{
         dispatch({
             type:'DEPARTMENT_NAME',
-            payload:departs
+            payload:departs,
         })
+    
     }
 
     return(
