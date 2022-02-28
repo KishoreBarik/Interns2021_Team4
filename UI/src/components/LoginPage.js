@@ -1,10 +1,10 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./LoginPage.css";
-import NavBar from "./NavBar";
 // import user_icon from "../images/user_icon.jpg";
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { FcBusinessman } from "react-icons/fc";
+import NavBarDulpi from "./NavBarDulpi";
 
 class LoginPage extends Component {
   constructor() {
@@ -70,7 +70,7 @@ class LoginPage extends Component {
   render() {
     return (
       <div>
-        <NavBar />
+        <NavBarDulpi />
         <form className="main" onSubmit={this.handleSubmit}>
           <div className="sub-main">
             <div>

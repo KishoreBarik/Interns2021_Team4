@@ -10,7 +10,7 @@ import MonthlyReport from "./pages/MonthlyReport";
 import ForgotPassword from "./components/ForgotPassword";
 import ChangePassword from "./components/ChangePassword";
 import ViewProfile from "./components/User/ViewProfile";
-import Project1 from "./components/Project1";
+
 
 import AddTask from "./components/User/Task/AddTask";
 import EditTask from "./components/User/Task/EditTask";
@@ -18,7 +18,8 @@ import Task from "./components/User/Task/Task";
 import TaskContextProvider from "./components/User/Context1/TaskContext";
 import TaskList from "./components/User/Task/TaskList";
 import TaskPagination from "./components/User/Task/TaskPagination";
-import Heading from "./components/User/Heading";
+import Heading1 from "./components/User/Heading1";
+import NavBarDulpi from "./components/NavBarDulpi";
 
 function App() {
   return (
@@ -34,14 +35,14 @@ function App() {
           <Route path="/Reports" exact element={<Reports />} />
           <Route path="pages/MonthlyReport" exact element={<MonthlyReport />} />
           <Route path="/viewprofile" element={<ViewProfile/>}></Route>
-          <Route path="/project1" element={<Project1/>}></Route>
+        
 
           <Route path="/addtask" element={<AddTask />} />
           <Route path="/edittask" element={<EditTask />} />
           <Route path="/task" element={<Task/>} />
           <Route path="/tasklist" element={<TaskList />} />
           <Route path="/pagination" element={<TaskPagination />} />
-          <Route path="/heading" element={<Heading />} />
+          <Route path="/heading1" element={<Heading1 />} />
       
           
 

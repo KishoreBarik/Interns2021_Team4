@@ -7,6 +7,8 @@ import "./Dashboard.css";
 import NavBar from "./NavBar";
 import TaskList from "./User/Task/TaskList";
 import Card from 'react-bootstrap/Card';
+import Heading1 from "./User/Heading1";
+
 
 class Dashboard extends Component {
   onClickAddTask() {
@@ -35,12 +37,9 @@ class Dashboard extends Component {
     return (
       <div>
         <NavBar
-          navElement="Dashboard"
-          navElement1="Report"
-          navElement2="Monthly Report"
-          username="Username"
           logout="Log Out"
         />
+        <Heading1></Heading1>
         <div className="date-picker-container">
 
           <div className="container">

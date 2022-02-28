@@ -1,38 +1,30 @@
 import React from "react";
 import { MdOutlineTimer } from "react-icons/md";
 import { BsPersonFill } from "react-icons/bs";
-import { Navbar, Nav, NavDropdown } from "react-bootstrap";
+import { Navbar, Nav, NavDropdown,NavItem,Container,NavbarBrand, } from "react-bootstrap";
 import "../../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import "./NavBar.css";
+import { Link } from "react-router-dom";
 
 function NavBar(props) {
   return (
     <div className="nav-container">
       <div className="row">
         <div className="col-md-12">
-          <Navbar
+        <Navbar 
             className="navbar"
             bg="dark"
             variant="dark"
-            expand="lg"
-            sticky="top"
-          >
-            <Navbar.Brand href="/">
-              <MdOutlineTimer size={40} />
-              &nbsp;TimeHunter.io
-            </Navbar.Brand>
-            <Navbar.Toggle aria-controls="basic-navbar-nav" />
-            <Navbar.Collapse id="basic-navbar-nav" className="nav-elements">
-              <Nav className="mr-auto active">
-                <Nav.Link href="/user/dashboard">{props.navElement}</Nav.Link>
-              </Nav>
-              <Nav className="mr-auto">
-                <Nav.Link href="/Reports">{props.navElement1}</Nav.Link>
-              </Nav>
-              <Nav className="mr-auto">
-                <Nav.Link href="">{props.navElement2}</Nav.Link>
-              </Nav>
-              <Nav className="mr-auto">
+          
+            sticky="top">
+              <Container>
+               <Navbar.Brand href="/">
+               <MdOutlineTimer size={40} />
+                 &nbsp;TimeHunter.io
+                </Navbar.Brand>
+                
+                <Nav>
+                    <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <NavDropdown
                   title={<BsPersonFill size={25} />}
                   id="collasible-nav-dropdown"
@@ -48,9 +40,12 @@ function NavBar(props) {
                   <NavDropdown.Divider />
                   <NavDropdown.Item href="/">{props.logout}</NavDropdown.Item>
                 </NavDropdown>
-              </Nav>
-            </Navbar.Collapse>
-          </Navbar>
+                </Nav>
+              </Container>
+            </Navbar> <br/>
+
+
+       
           <br />
         </div>
       </div>
