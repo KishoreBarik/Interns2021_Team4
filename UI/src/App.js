@@ -12,10 +12,19 @@ import ChangePassword from "./components/ChangePassword";
 import ViewProfile from "./components/User/ViewProfile";
 import Project1 from "./components/Project1";
 
+import AddTask from "./components/User/Task/AddTask";
+import EditTask from "./components/User/Task/EditTask";
+import Task from "./components/User/Task/Task";
+import TaskContextProvider from "./components/User/Context1/TaskContext";
+import TaskList from "./components/User/Task/TaskList";
+import TaskPagination from "./components/User/Task/TaskPagination";
+import Heading from "./components/User/Heading";
+
 function App() {
   return (
     <div>
       <div className="text-center d-flex flex-column justify-content-center">
+        <TaskContextProvider>
         <Routes>
           <Route exact path="/" element={<LoginPage />} />
           <Route exact path="/loginpage" element={<LoginPage />} />
@@ -26,7 +35,19 @@ function App() {
           <Route path="pages/MonthlyReport" exact element={<MonthlyReport />} />
           <Route path="/viewprofile" element={<ViewProfile/>}></Route>
           <Route path="/project1" element={<Project1/>}></Route>
+
+          <Route path="/addtask" element={<AddTask />} />
+          <Route path="/edittask" element={<EditTask />} />
+          <Route path="/task" element={<Task/>} />
+          <Route path="/tasklist" element={<TaskList />} />
+          <Route path="/pagination" element={<TaskPagination />} />
+          <Route path="/heading" element={<Heading />} />
+      
+          
+
+
         </Routes>
+        </TaskContextProvider>
       </div>
     </div>
   );

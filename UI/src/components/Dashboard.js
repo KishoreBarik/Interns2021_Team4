@@ -5,6 +5,8 @@ import "react-datepicker/dist/react-datepicker.css";
 import "../../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import "./Dashboard.css";
 import NavBar from "./NavBar";
+import TaskList from "./User/Task/TaskList";
+import Card from 'react-bootstrap/Card';
 
 class Dashboard extends Component {
   onClickAddTask() {
@@ -39,77 +41,94 @@ class Dashboard extends Component {
           username="Username"
           logout="Log Out"
         />
-        <div class="date-picker-container">
-          <div>
-            <h5>Select Date:</h5>
-          </div>
-          <div class="row">
-            <div class="col-12">
-              <DatePicker
+        <div className="date-picker-container">
+
+          <div className="container">
+          <div className="row">
+            <div className="col"></div>
+            <div className="col-4">
+            <strong>Select Date:</strong><DatePicker
                 selected={this.state.startDate}
                 onChange={this.handleChange}
                 name="startDate"
                 dateFormat="dd/MM/yyyy"
               />
             </div>
+            <div className="col"></div>
           </div>
+          </div>
+
         </div>
-        <div class="m-5">
-          <div class="row">
-            <div class="col-sm-6">
-              <Accordion className="mb-3">
+        <div className="m-5">
+          <div className="row">
+            <div className="col-sm-6">
+              <Card border="dark">
+              <Card.Header>SAILS SOFTWARE</Card.Header>
+                <Card.Body>
+              <Accordion className="mb-6">
                 <Accordion.Item eventKey="0">
                   <Accordion.Header>Project 1</Accordion.Header>
                   <Accordion.Body>
-                    <div className="d-flex flex-row justify-content-end">
-                      <button className="btn btn-primary">+ Add Task</button>
-                    </div>
+                     <TaskList></TaskList>
                     <div id="tasksContainer"></div>
                   </Accordion.Body>
                 </Accordion.Item>
               </Accordion>
-            </div>
-            <div class="col-sm-6">
-              <Accordion className="mb-3">
+              </Card.Body>
+              </Card>
+              </div>
+
+              <div className="col-sm-6">
+              <Card border="dark">
+              <Card.Header>LQRTV</Card.Header>
+                <Card.Body>
+              <Accordion className="mb-6">
                 <Accordion.Item eventKey="1">
                   <Accordion.Header>Project 2</Accordion.Header>
                   <Accordion.Body>
-                    <div className="d-flex flex-row justify-content-end">
-                      <button className="btn btn-primary">+ Add Task</button>
-                    </div>
+                      <TaskList></TaskList>
+                      <div id="tasksContainer"></div>
                   </Accordion.Body>
                 </Accordion.Item>
               </Accordion>
+             </Card.Body>
+             </Card>
             </div>
-            <div class="col-sm-6">
-              <Accordion className="mb-3">
+
+            <div className="col-sm-6">
+            <Card border="dark">
+            <Card.Header>HOLIDAYS</Card.Header>
+                <Card.Body>
+              <Accordion className="mb-6">
                 <Accordion.Item eventKey="2">
                   <Accordion.Header>Project 3</Accordion.Header>
                   <Accordion.Body>
-                    <div className="d-flex flex-row justify-content-end">
-                      <button className="btn btn-primary">+ Add Task</button>
-                    </div>
+                      <TaskList></TaskList>
                   </Accordion.Body>
                 </Accordion.Item>
               </Accordion>
+              </Card.Body>
+              </Card>
             </div>
-            <div class="col-sm-6">
-              <Accordion className="mb-3">
-                <Accordion.Item eventKey="3">
-                  <Accordion.Header>Project 4</Accordion.Header>
+
+            <div className="col-sm-6">
+            <Card border="dark">
+                <Card.Header>HJHAK</Card.Header>
+                <Card.Body>
+              <Accordion className="mb-6">
+                <Accordion.Item eventKey="2">
+                  <Accordion.Header>Project 3</Accordion.Header>
                   <Accordion.Body>
-                    <div className="d-flex flex-row justify-content-end">
-                      <button
-                        className="btn btn-primary"
-                        onClick={this.onClickAddTask}
-                      >
-                        + Add Task
-                      </button>
-                    </div>
+                      <TaskList></TaskList>
                   </Accordion.Body>
                 </Accordion.Item>
               </Accordion>
+              </Card.Body>
+              </Card>
             </div>
+
+          
+
           </div>
         </div>
       </div>
