@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { AiFillCaretRight,AiFillCaretLeft} from "react-icons/ai";
+import './Pagination.css'
 
 const ClientPagination = ({pages, setCurrentPage, currentClients, sortedClients}) => {
 
@@ -17,10 +18,10 @@ const ClientPagination = ({pages, setCurrentPage, currentClients, sortedClients}
     }, [currentButton, setCurrentPage])
 
     return (
+        <div>
         <div className="clearfix">
         <div className="hint-text">
-        Showing <b>{currentClients.length}</b> out of <b>{sortedClients.length}
-        </b> entries</div>
+       
         <ul className="pagination">
             <li className={`${currentButton === 1 ? 'page-item disabled' : 'page-item' }`}>
                 <a href="#!"
@@ -31,7 +32,7 @@ const ClientPagination = ({pages, setCurrentPage, currentClients, sortedClients}
                 return (
                     <li key={index}
                      className={`${currentButton === page ? 'page-item active' : 'page-item' }`}>
-                        <a href="#!" className="page-link"
+                        <a href="#!" className="page-link" 
                         onClick = {()=>setCurrentButton(page)}
                     >{page}</a></li> 
                 )
@@ -44,6 +45,10 @@ const ClientPagination = ({pages, setCurrentPage, currentClients, sortedClients}
     onClick = { () => setCurrentButton((next) => next === numOfPages.length ? next : next + 1)}
     > <AiFillCaretRight size={40} /></a></li>
         </ul>
+       
+    </div>
+    Showing <b>{currentClients.length}</b> out of <b>{sortedClients.length}
+        </b> entries</div>
     </div>
     )
 }

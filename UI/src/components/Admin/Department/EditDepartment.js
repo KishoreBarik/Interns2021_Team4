@@ -1,24 +1,25 @@
 import { Button } from 'react-bootstrap';
 import Form from 'react-bootstrap/Form';
-import { EmployeeContext } from './Context/EmployeeContext'; 
+import { DepartmentContext } from './Context/DepartmentContext'; 
 import { useContext,useState } from 'react';
 
 
 
 
-const EditForm =({theEmployee})=>{
 
-    const id = theEmployee.id;
-    const [name,setName]=useState(theEmployee.name);
-    const [code,setCode]=useState(theEmployee.code);
+const EditDepartment =({theDepartment})=>{
+
+    const id = theDepartment.id;
+    const [name,setName]=useState(theDepartment.name);
+    const [code,setCode]=useState(theDepartment.code);
     
 
-    const {updateEmployee}=useContext(EmployeeContext);
-    const updatedEmployee={id,name,code}
+    const {updateDepartment}=useContext(DepartmentContext);
+    const updatedDepartment={id,name,code}
 
     const handleSubmit=(e)=>{
         e.preventDefault();
-        updateEmployee(id,updatedEmployee)
+        updateDepartment(id,updatedDepartment)
     }
 
     
@@ -48,4 +49,4 @@ const EditForm =({theEmployee})=>{
 
     )
 }
-export default EditForm;
+export default EditDepartment;

@@ -1,0 +1,9 @@
+.table-responsive {
+    -webkit-overflow-scrolling: touch;
+    overflow: hidden;
+}
+
+.hint-text{
+    justify-content: center;
+    display: flex;
+}

@@ -1,28 +1,28 @@
 import { Button } from 'react-bootstrap';
 import Form from 'react-bootstrap/Form';
-import { EmployeeContext } from './Context/EmployeeContext'; 
+import { DepartmentContext } from './Context/DepartmentContext'; 
 import { useContext,useState } from 'react';
 
 
 
 
-const AddForm =()=>{
-    const {addEmployee}=useContext(EmployeeContext);
+const AddDepartment=()=>{
+    const {addDepartment}=useContext(DepartmentContext);
 
-    const [newEmployee,setNewEmployee]=useState({
+    const [newDepartment,setNewDepartment]=useState({
         name:"",code:""
     });
 
 
     const onInputChange=(e)=>{
-        setNewEmployee({...newEmployee,[e.target.name]:e.target.value})
+        setNewDepartment({...newDepartment,[e.target.name]:e.target.value})
     }
 
-    const {name,code}=newEmployee;
+    const {name,code}=newDepartment;
 
     const handleSubmit=(e)=>{
         e.preventDefault();
-        addEmployee(name,code);
+        addDepartment(name,code);
     }
 
     return(
@@ -50,4 +50,4 @@ const AddForm =()=>{
 
     )
 }
-export default AddForm;
+export default AddDepartment;

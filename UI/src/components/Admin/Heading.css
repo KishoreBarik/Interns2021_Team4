@@ -1,0 +1,13 @@
+.jhhh{
+background-color:white;
+border-radius: 2px;
+text-decoration: none;
+}
+
+.jhhh:hover{
+  text-decoration: none;
+  color:teal;
+}
+.navbar-light .navbar-brand {
+    color: white!important;
+}

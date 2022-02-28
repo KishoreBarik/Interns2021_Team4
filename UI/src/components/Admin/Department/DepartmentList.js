@@ -1,16 +1,17 @@
 import React from "react";
-import Employee from "./Employee";
+import Department from "./Department";
 import {useContext, useEffect, useState } from 'react';
-import { EmployeeContext } from "./Context/EmployeeContext"; 
+import { DepartmentContext } from "./Context/DepartmentContext";
 import Modal from 'react-bootstrap/Modal'
-import AddForm from "./AddForm";
 import { ModalFooter ,Button} from "react-bootstrap";
 import Alert from 'react-bootstrap/Alert';
-import Pagination from "./Pagination";
+import Pagination from "./DepartmentPagination";
+import {AiFillPlusCircle} from "react-icons/ai";
+import AddDepartment from "./AddDepartment";
 
-const EmployeeList=()=>{
+const DepartmentList=()=>{
       
-    const {sortedEmployees}=useContext(EmployeeContext);
+    const {sortedDepartments}=useContext(DepartmentContext);
 
     const [show,setShow]=useState(false);
     const [showAlert,setShowAlert]=useState(false);
@@ -20,7 +21,7 @@ const EmployeeList=()=>{
     //const handleShowAlert=()=>setShowAlert(true);
 
     const [currentPage, setCurrentPage] = useState(1);
-    const [employeesPerPage] = useState(2)
+    const [departmentsPerPage] = useState(2)
 
     const handleShowAlert=()=>{
         setShowAlert(true);
@@ -35,13 +36,13 @@ const EmployeeList=()=>{
         return () => {
             handleShowAlert();
         }
-    }, [sortedEmployees])
+    }, [sortedDepartments])
 
 
-    const indexOfLastEmployee = currentPage * employeesPerPage;
-    const indexOfFirstEmployee = indexOfLastEmployee - employeesPerPage;
-    const currentEmployees = sortedEmployees.slice(indexOfFirstEmployee, indexOfLastEmployee);
-    const totalPagesNum = Math.ceil(sortedEmployees.length / employeesPerPage);
+    const indexOfLastDepartment = currentPage * departmentsPerPage;
+    const indexOfFirstDepartment = indexOfLastDepartment - departmentsPerPage;
+    const currentDepartments = sortedDepartments.slice(indexOfFirstDepartment, indexOfLastDepartment);
+    const totalPagesNum = Math.ceil(sortedDepartments.length / departmentsPerPage);
 
 
     return(
@@ -54,7 +55,7 @@ const EmployeeList=()=>{
 					</div><br/>
 					<div className="">
 						<Button onClick={handleShow} class="btn btn-success" 
-                        data-toggle="modal"><i class="material-icons">&#xE147;</i> 
+                        data-toggle="modal"><AiFillPlusCircle size={25}/>&nbsp;
                         <span>Add New Department</span></Button>	<br/>				
 					</div>
 				</div>
@@ -62,7 +63,7 @@ const EmployeeList=()=>{
             <Alert show={showAlert} variant="success">
                 "Department list is updated successfully!"
             </Alert>
-            <table className="table table-striped table-hover">
+            <table className="table table-striped table-bordered table-hover">
             <thead>
                 <tr>
                     <th>Name</th>
@@ -72,9 +73,9 @@ const EmployeeList=()=>{
             </thead>
             <tbody>
             {
-                  currentEmployees.map(employee => (
-                      <tr key={employee.id}>
-                        <Employee employee={employee} />
+                  currentDepartments.map(department => (
+                      <tr key={department.id}>
+                        <Department department={department} />
                     </tr>
                   ))  
                 }
@@ -84,8 +85,8 @@ const EmployeeList=()=>{
            </table>
            <Pagination pages = {totalPagesNum}
                 setCurrentPage={setCurrentPage}
-                currentEmployees ={currentEmployees}
-                sortedEmployees = {sortedEmployees} />
+                currentDepartments ={currentDepartments}
+                sortedDepartments = {sortedDepartments} />
 
            <Modal show={show} onHide={handleClose}>
                <Modal.Header closeButton>
@@ -95,7 +96,7 @@ const EmployeeList=()=>{
                </Modal.Header>
 
                <Modal.Body>
-               <AddForm/>
+               <AddDepartment/>
                </Modal.Body><br/>
 
                <ModalFooter>
@@ -106,4 +107,4 @@ const EmployeeList=()=>{
     )
 }
 
-export default EmployeeList;
+export default DepartmentList;

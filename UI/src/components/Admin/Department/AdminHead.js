@@ -1,7 +1,7 @@
 import {React} from "react"
 import 'bootstrap/dist/css/bootstrap.min.css';
-import EmployeeList from "./EmployeeList";
-import Admin from "./Admin";
+import DepartmentList from "./DepartmentList";
+import Admin from "../Admin";
 
 
 const Adminhead=()=>{
@@ -10,7 +10,7 @@ const Adminhead=()=>{
       <div className="container-xl">
 	    <div className="table-responsive">
 		  <div className="table-wrapper">
-      <EmployeeList></EmployeeList>
+      <DepartmentList></DepartmentList>
       </div></div></div>
       </>
     );

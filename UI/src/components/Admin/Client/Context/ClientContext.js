@@ -6,9 +6,9 @@ export const ClientContext=createContext();
 
 const ClientContextProvider = (props) => {
         const [clients,setClients] = useState([
-            {id:uuidv4(), name: 'HR', code:'4567'},
-            {id:uuidv4(), name: 'BACKEND', code:'4567'},
-            {id:uuidv4(), name: 'FRONTEND', code:'4567'},
+            {id:uuidv4(), name: 'AGENDA', code:'4878787'},
+            {id:uuidv4(), name: 'BUXER', code:'4567827'},
+            {id:uuidv4(), name: 'CLIENT', code:'45638877'},
             
     ])
 

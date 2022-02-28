@@ -1,11 +1,11 @@
 import { ModalFooter ,Button} from "react-bootstrap";
-import { EmployeeContext } from "./Context/EmployeeContext"; 
+import { DepartmentContext } from "./Context/DepartmentContext";
 import {useContext,useState,useEffect } from 'react';
 import { Modal} from "react-bootstrap";
-import EditForm from "./EditForm";
+import EditDepartment from "./EditDepartment";
 
-const Employee=({employee})=>{
-	const {deleteEmployee}=useContext(EmployeeContext);
+const Department=({department})=>{
+	const {deleteDepartment}=useContext(DepartmentContext);
 
 	const [show,setShow]=useState(false);
 
@@ -14,12 +14,12 @@ const Employee=({employee})=>{
     
 	useEffect(()=>{
         handleClose()
-    },[employee])
+    },[department])
 
 
     return(<>
-        <td>{employee.name}</td>
-		<td>{employee.code}</td>
+        <td>{department.name}</td>
+		<td>{department.code}</td>
 		<td>
 
 		<Button
@@ -31,7 +31,7 @@ const Employee=({employee})=>{
 		<Button  
 		
 		data-toggle="modal"
-		onClick={()=>{deleteEmployee(employee.id)}}>
+		onClick={()=>{deleteDepartment(department.id)}}>
 		<i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i>
 		</Button>
 		</td>
@@ -44,7 +44,7 @@ const Employee=({employee})=>{
                </Modal.Header>
 
                <Modal.Body>
-               <EditForm theEmployee={employee}></EditForm>
+               <EditDepartment  theDepartment={department}></EditDepartment>
                </Modal.Body>
 
                <ModalFooter>
@@ -55,4 +55,4 @@ const Employee=({employee})=>{
     )
 }
 
-export default Employee;
+export default Department;

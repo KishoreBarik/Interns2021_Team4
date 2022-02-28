@@ -7,6 +7,8 @@ import { ModalFooter ,Button} from "react-bootstrap";
 import Alert from 'react-bootstrap/Alert';
 import ClientPagination from "./ClientPagination";
 import AddClient from "./AddClient";
+import './Pagination.css';
+import {AiFillPlusCircle} from "react-icons/ai";
 
 const ClientList=()=>{
       
@@ -54,7 +56,7 @@ const ClientList=()=>{
 					</div><br/>
 					<div className="">
 						<Button onClick={handleShow} class="btn btn-success" 
-                        data-toggle="modal"><i class="material-icons">&#xE147;</i> 
+                        data-toggle="modal"><AiFillPlusCircle size={25}/>&nbsp;
                         <span>Add New Client</span></Button>	<br/>				
 					</div>
 				</div>
@@ -62,7 +64,7 @@ const ClientList=()=>{
             <Alert show={showAlert} variant="success">
                 "Client list is updated successfully!"
             </Alert>
-            <table className="table table-striped table-hover">
+            <table className="table table-striped table-bordered table-hover">
             <thead>
                 <tr>
                     <th>Name</th>
@@ -78,8 +80,6 @@ const ClientList=()=>{
                     </tr>
                   ))  
                 }
-                
-
            </tbody>
            </table>
            <ClientPagination pages = {totalPagesNum}
