@@ -6,7 +6,6 @@ import "./App.css";
 import LoginPage from "./components/LoginPage";
 import Dashboard from "./components/Dashboard";
 import Reports from "./components/User/Reports";
-import MonthlyReport from "./pages/MonthlyReport";
 import ForgotPassword from "./components/ForgotPassword";
 import ChangePassword from "./components/ChangePassword";
 import ViewProfile from "./components/User/ViewProfile";
@@ -33,7 +32,6 @@ function App() {
           <Route exact path="/user/dashboard" element={<Dashboard />} />
           <Route exact path="/forgotpassword" element={<ForgotPassword />} />
           <Route path="/Reports" exact element={<Reports />} />
-          <Route path="pages/MonthlyReport" exact element={<MonthlyReport />} />
           <Route path="/viewprofile" element={<ViewProfile/>}></Route>
         
 
