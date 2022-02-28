@@ -1,19 +1,19 @@
 import {React} from "react"
 import 'bootstrap/dist/css/bootstrap.min.css';
-import EmployeeList from "./EmployeeList";
-import Admin from "./Admin";
+import ClientList from "./ClientList";
+import Admin from "../../Admin";
 
 
-const Adminhead=()=>{
+const MainClient=()=>{
     return(
       <><Admin></Admin>
       <div className="container-xl">
 	    <div className="table-responsive">
 		  <div className="table-wrapper">
-      <EmployeeList></EmployeeList>
+      <ClientList></ClientList>
       </div></div></div>
       </>
     );
 }
 
-export default Adminhead;
+export default MainClient;

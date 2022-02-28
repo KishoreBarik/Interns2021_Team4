@@ -3,7 +3,6 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import NavBar from "../NavBar";
 import { Link } from "react-router-dom";
 import { Navbar,Nav,NavItem,NavbarBrand,Container, Button } from "react-bootstrap";
-import AdminDashboard from "./AdminDashboard";
 
 
 
@@ -18,10 +17,10 @@ const Admin=()=>{
                 <div className="col-7">
             <Navbar>
                 <Container>
-                    <NavbarBrand href="/admindashboard">Manage</NavbarBrand>
+                    <NavbarBrand href="/admin">Manage</NavbarBrand>
                     <Nav>
                         <NavItem>
-                            <Link className="jhhh" to="/addclient">Add Client</Link>&nbsp;
+                            <Link className="jhhh" to="/mainclient">Add Client</Link>&nbsp;
                         </NavItem>
                         <NavItem>
                             <Link className="jhhh" to="/addproject">Add Project</Link>&nbsp;
@@ -30,7 +29,7 @@ const Admin=()=>{
                             <Link className="jhhh" to="/admindashboard">Add user</Link>&nbsp;
                         </NavItem>
                         <NavItem>
-                            <Link className="jhhh" to="/Adminhead">Add Department</Link>
+                            <Link className="jhhh" to="/adminhead">Add Department</Link>
                         </NavItem>
                     </Nav>
                 </Container>

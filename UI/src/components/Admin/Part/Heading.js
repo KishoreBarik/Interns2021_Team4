@@ -16,7 +16,7 @@ const Heading=()=>{
                     <NavbarBrand href="/admindashboard">My Team</NavbarBrand>
                     <Nav>
                         <NavItem>
-                            <Link className="jhhh" to="/adduser">Add User</Link>
+                            <Link className="jhhh" to="/adminhead">Add User</Link>
                         </NavItem>
                     </Nav>
                 </Container>
