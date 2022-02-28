@@ -10,10 +10,11 @@ const EditForm = ({ theEmployee }) => {
   const [email, setEmail] = useState(theEmployee.email);
 
   const [phone, setPhone] = useState(theEmployee.phone);
+  const [project, setProject] = useState(theEmployee.project);
 
   const { updateEmployee } = useContext(EmployeeContext);
 
-  const updatedEmployee = { id, name, email, phone };
+  const updatedEmployee = { id, name, email, phone, project };
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -51,6 +52,19 @@ const EditForm = ({ theEmployee }) => {
           value={phone}
           onChange={(e) => setPhone(e.target.value)}
         />
+      </Form.Group>
+      <Form.Group>
+        <Form.Select
+          placeholder="Assign Project"
+          name="project"
+          value={project}
+          onChange={(e) => setProject(e.target.value)}
+        >
+          <option eventKey="-">Assign project</option>
+          <option eventKey="project-1">Project-1</option>
+          <option eventKey="project-2">Project-2</option>
+          <option eventKey="project-3">Project-3</option>
+        </Form.Select>
       </Form.Group>
       <Button variant="success" type="submit" block>
         Edit Employee

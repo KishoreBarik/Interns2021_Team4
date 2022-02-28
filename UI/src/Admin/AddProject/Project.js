@@ -1,11 +1,11 @@
 import { useContext, useState, useEffect } from "react";
-import { EmployeeContext } from "./EmployeeContext";
+import { ProjectContext } from "./ProjectContext";
 import { Modal, Button, OverlayTrigger, Tooltip } from "react-bootstrap";
 import EditForm from "./EditForm";
 import "./Appp.css";
 import { EditOutlined, DeleteOutlined } from "@ant-design/icons";
-const Employee = ({ employee }) => {
-  const { deleteEmployee } = useContext(EmployeeContext);
+const Project = ({ project }) => {
+  const { deleteproject } = useContext(ProjectContext);
 
   const [show, setShow] = useState(false);
 
@@ -14,15 +14,14 @@ const Employee = ({ employee }) => {
 
   useEffect(() => {
     handleClose();
-  }, [employee]);
+  }, [project]);
 
   return (
     <>
-      <td>{employee.name}</td>
-      <td>{employee.email}</td>
+      <td>{project.projectname}</td>
+      <td>{project.departmentname}</td>
 
-      <td>{employee.phone}</td>
-      <td>{employee.project}</td>
+      <td>{project.projectstatus}</td>
       <td>
         <OverlayTrigger overlay={<Tooltip id={`tooltip-top`}>Edit</Tooltip>}>
           <EditOutlined
@@ -33,7 +32,7 @@ const Employee = ({ employee }) => {
         </OverlayTrigger>
         <OverlayTrigger overlay={<Tooltip id={`tooltip-top`}>Delete</Tooltip>}>
           <DeleteOutlined
-            onClick={() => deleteEmployee(employee.id)}
+            onClick={() => deleteproject(project.id)}
             className="btn text-danger btn-act"
             data-toggle="modal"
           />
@@ -42,10 +41,10 @@ const Employee = ({ employee }) => {
 
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
-          <Modal.Title>Edit Employee</Modal.Title>
+          <Modal.Title>Edit Project details</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <EditForm theEmployee={employee} />
+          <EditForm theProject={project} />
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleClose}>
@@ -57,4 +56,4 @@ const Employee = ({ employee }) => {
   );
 };
 
-export default Employee;
+export default Project;

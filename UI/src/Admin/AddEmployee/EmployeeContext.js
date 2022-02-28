@@ -18,6 +18,7 @@ const EmployeeContextProvider = (props) => {
       email: "Anantha@mail.com",
 
       phone: "12344566",
+      project: "project-1",
     },
     {
       id: uuidv4(),
@@ -25,20 +26,23 @@ const EmployeeContextProvider = (props) => {
       email: "Sireesha@mail.com",
 
       phone: "785468468",
+      project: "project-3",
     },
     {
       id: uuidv4(),
-      name: "Fran Wilson",
-      email: "franwilson@mail.com",
+      name: "jesse",
+      email: "jesse@mail.com",
 
-      phone: "(204) 619-5731",
+      phone: "9985645731",
+      project: "project-2",
     },
     {
       id: uuidv4(),
-      name: "Martin Blank",
-      email: "martinblank@mail.com",
+      name: "prathyusha",
+      email: "prathyusha@mail.com",
 
-      phone: "(480) 631-2097",
+      phone: "4587942097",
+      project: "project-1",
     },
   ]);
 
@@ -52,8 +56,8 @@ const EmployeeContextProvider = (props) => {
 
   const sortedEmployees = employees.sort((a, b) => (a.name < b.name ? -1 : 1));
 
-  const addEmployee = (name, email, phone) => {
-    setEmployees([...employees, { id: uuidv4(), name, email, phone }]);
+  const addEmployee = (name, email, phone, project) => {
+    setEmployees([...employees, { id: uuidv4(), name, email, phone, project }]);
   };
 
   const deleteEmployee = (id) => {

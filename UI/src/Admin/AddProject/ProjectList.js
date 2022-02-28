@@ -1,12 +1,12 @@
 import { Modal, Button, Alert } from "react-bootstrap";
 import { useContext, useEffect, useState } from "react";
-import { EmployeeContext } from "./EmployeeContext";
-import Employee from "./Employee";
+import { ProjectContext } from "./ProjectContext";
+import Project from "./Project";
 import AddForm from "./AddForm";
 import Pagination from "./Pagination";
 import "./Appp.css";
-const EmployeeList = () => {
-  const { sortedEmployees } = useContext(EmployeeContext);
+const ProjectList = () => {
+  const { sortedEmployees } = useContext(ProjectContext);
 
   const [showAlert, setShowAlert] = useState(false);
 
@@ -17,7 +17,7 @@ const EmployeeList = () => {
   //const handleShowAlert = () =>setShowAlert(true);
 
   const [currentPage, setCurrentPage] = useState(1);
-  const [employeesPerPage] = useState(3);
+  const [projectsPerPage] = useState(3);
 
   const handleShowAlert = () => {
     setShowAlert(true);
@@ -34,13 +34,13 @@ const EmployeeList = () => {
     };
   }, [sortedEmployees]);
 
-  const indexOfLastEmployee = currentPage * employeesPerPage;
-  const indexOfFirstEmployee = indexOfLastEmployee - employeesPerPage;
-  const currentEmployees = sortedEmployees.slice(
-    indexOfFirstEmployee,
-    indexOfLastEmployee
+  const indexOfLastProject = currentPage * projectsPerPage;
+  const indexOfFirstProject = indexOfLastProject - projectsPerPage;
+  const currentProjects = sortedEmployees.slice(
+    indexOfFirstProject,
+    indexOfLastProject
   );
-  const totalPagesNum = Math.ceil(sortedEmployees.length / employeesPerPage);
+  const totalPagesNum = Math.ceil(sortedEmployees.length / projectsPerPage);
 
   return (
     <>
@@ -48,7 +48,7 @@ const EmployeeList = () => {
         <div className="row">
           <div className="col-sm-6">
             <h2>
-              Manage <b>Employees</b>
+              Manage <b>Projects</b>
             </h2>
           </div>
           <div className="col-sm-6">
@@ -57,31 +57,30 @@ const EmployeeList = () => {
               className="btn btn-success"
               data-toggle="modal"
             >
-              <span>Add New Employee</span>
+              <span>Add New Project</span>
             </Button>
           </div>
         </div>
       </div>
 
       <Alert show={showAlert} variant="success">
-        Employee List Updated Successfully!
+        Projects List Updated Successfully!
       </Alert>
 
       <table className="table table-striped table-hover">
         <thead>
           <tr>
-            <th>Name</th>
-            <th>Email</th>
+            <th>Project Name</th>
+            <th>Department Name</th>
 
-            <th>Phone</th>
-            <th>Project </th>
+            <th>Project Status</th>
             <th>Actions</th>
           </tr>
         </thead>
         <tbody>
-          {currentEmployees.map((employee) => (
-            <tr key={employee.id}>
-              <Employee employee={employee} />
+          {currentProjects.map((project) => (
+            <tr key={project.id}>
+              <Project project={project} />
             </tr>
           ))}
         </tbody>
@@ -90,13 +89,13 @@ const EmployeeList = () => {
       <Pagination
         pages={totalPagesNum}
         setCurrentPage={setCurrentPage}
-        currentEmployees={currentEmployees}
+        currentProjects={currentProjects}
         sortedEmployees={sortedEmployees}
       />
 
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
-          <Modal.Title>Add Employee</Modal.Title>
+          <Modal.Title>Add Project</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <AddForm />
@@ -111,4 +110,4 @@ const EmployeeList = () => {
   );
 };
 
-export default EmployeeList;
+export default ProjectList;
