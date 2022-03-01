@@ -10,6 +10,7 @@ import Dashboard from "./components/Dashboard";
 // import ForgotPassword from "./components/ForgotPassword";
 import Apps from "./Admin/AddEmployee/Appp";
 import AddProjects from "./Admin/AddProject/AddProjects";
+import Admin from "./Admin/Admin";
 function App() {
   return (
     <div>
@@ -22,6 +23,7 @@ function App() {
 
           <Route path="/addemployee" exact element={<Apps />} />
           <Route path="/addproject" exact element={<AddProjects />} />
+          <Route path="/admin" exact element={<Admin />} />
         </Routes>
       </div>
     </div>
