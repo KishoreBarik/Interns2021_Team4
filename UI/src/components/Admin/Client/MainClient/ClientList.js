@@ -8,7 +8,7 @@ import Alert from 'react-bootstrap/Alert';
 import ClientPagination from "./ClientPagination";
 import AddClient from "./AddClient";
 import './Pagination.css';
-import {AiFillPlusCircle} from "react-icons/ai";
+import './ClientList.css';
 
 const ClientList=()=>{
       
@@ -52,15 +52,17 @@ const ClientList=()=>{
         <div className="table-title">
 				<div className="row">
 					<div className="col-sm-6">
-						
+                    <h2>
+                    Manage <b>Clients</b>
+                   </h2>
 					</div><br/>
-					<div className="">
+					<div className="col-sm-6">
 						<Button onClick={handleShow} class="btn btn-success" 
-                        data-toggle="modal"><AiFillPlusCircle size={25}/>&nbsp;
-                        <span>Add New Client</span></Button>	<br/>				
+                        data-toggle="modal">&nbsp;
+                        <span>Add New Client</span></Button><br/>				
 					</div>
 				</div>
-			</div>
+			</div><br/>
             <Alert show={showAlert} variant="success">
                 "Client list is updated successfully!"
             </Alert>

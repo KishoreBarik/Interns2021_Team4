@@ -1,7 +1,7 @@
 import { ModalFooter ,Button} from "react-bootstrap";
 import { DepartmentContext } from "./Context/DepartmentContext";
 import {useContext,useState,useEffect } from 'react';
-import { Modal} from "react-bootstrap";
+import { Modal,OverlayTrigger, Tooltip} from "react-bootstrap";
 import EditDepartment from "./EditDepartment";
 
 const Department=({department})=>{
@@ -21,19 +21,22 @@ const Department=({department})=>{
         <td>{department.name}</td>
 		<td>{department.code}</td>
 		<td>
-
+        <OverlayTrigger overlay={<Tooltip id={`tooltip-top`}>Edit</Tooltip>}>
 		<Button
 		data-toggle="modal"
 		onClick={handleShow}>
 		<i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i>
-		</Button>&nbsp;
+		</Button>
 
+        </OverlayTrigger>&nbsp;
+       <OverlayTrigger overlay={<Tooltip id={`tooltip-top`}>Edit</Tooltip>}>
 		<Button  
-		
 		data-toggle="modal"
 		onClick={()=>{deleteDepartment(department.id)}}>
 		<i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i>
 		</Button>
+        </OverlayTrigger>
+
 		</td>
 
 		<Modal show={show} onHide={handleClose}>

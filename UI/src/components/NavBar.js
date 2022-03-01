@@ -38,7 +38,7 @@ function NavBar(props) {
                   </NavDropdown.Item>
 
                   <NavDropdown.Divider />
-                  <NavDropdown.Item href="/">{props.logout}</NavDropdown.Item>
+                  <NavDropdown.Item href="/">{props.logout}logout</NavDropdown.Item>
                 </NavDropdown>
                 </Nav>
               </Container>

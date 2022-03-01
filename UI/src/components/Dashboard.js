@@ -37,7 +37,7 @@ class Dashboard extends Component {
     return (
       <div>
         <NavBar
-          logout="Log Out"
+          
         />
         <Heading1></Heading1>
         <div className="date-picker-container">

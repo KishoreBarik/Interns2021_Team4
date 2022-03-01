@@ -6,7 +6,7 @@ import Modal from 'react-bootstrap/Modal'
 import { ModalFooter ,Button} from "react-bootstrap";
 import Alert from 'react-bootstrap/Alert';
 import TaskPagination from "./TaskPagination";
-import {AiFillPlusCircle} from "react-icons/ai";
+import { MdOutlineTimer } from "react-icons/md";
 import AddTask from "./AddTask";
 
 const TaskList=()=>{
@@ -51,11 +51,12 @@ const TaskList=()=>{
         <div className="table-title">
 				<div className="row">
 					<div className="col-sm-3">
-						
+                    <h2><MdOutlineTimer size={25}/></h2>
 					</div><br/>
-					<div className="">
+					<div className="col-sm-3">
+                       
 						<Button onClick={handleShow} class="btn btn-success" 
-                        data-toggle="modal"><AiFillPlusCircle size={25}/>&nbsp;
+                        data-toggle="modal">
                         <span>Add New Task</span></Button>	<br/>				
 					</div>
 				</div>

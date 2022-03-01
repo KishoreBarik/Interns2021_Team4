@@ -21,7 +21,8 @@ const ClientPagination = ({pages, setCurrentPage, currentClients, sortedClients}
         <div>
         <div className="clearfix">
         <div className="hint-text">
-       
+        Showing <b>{currentClients.length}</b> out of <b>{sortedClients.length}
+        </b> entries</div>
         <ul className="pagination">
             <li className={`${currentButton === 1 ? 'page-item disabled' : 'page-item' }`}>
                 <a href="#!"
@@ -47,8 +48,7 @@ const ClientPagination = ({pages, setCurrentPage, currentClients, sortedClients}
         </ul>
        
     </div>
-    Showing <b>{currentClients.length}</b> out of <b>{sortedClients.length}
-        </b> entries</div>
+   
     </div>
     )
 }

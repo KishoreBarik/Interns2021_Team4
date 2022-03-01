@@ -1,4 +1,4 @@
-import { createContext,useState } from "react";
+import { createContext,useState,useEffect } from "react";
 import {v4 as uuidv4} from 'uuid';
 
 export const ClientContext=createContext();
@@ -11,7 +11,13 @@ const ClientContextProvider = (props) => {
             {id:uuidv4(), name: 'CLIENT', code:'45638877'},
             
     ])
+useEffect(()=>{
+        setClients(JSON.parse(localStorage.getItem('clients')))
+    },[])
 
+useEffect(()=>{
+    localStorage.setItem('clients',JSON.stringify(clients));
+})
 
     const sortedClients = clients.sort((a,b)=>(a.name < b.name ? -1 : 1));
 

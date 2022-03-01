@@ -27,7 +27,7 @@ const Admin=()=>{
                             <Link className="jhhh" to="/addproject">Add Project</Link>&nbsp;&nbsp;
                         </NavItem>
                         <NavItem>
-                            <Link className="jhhh" to="/admindashboard">Add User</Link>&nbsp;&nbsp;
+                            <Link className="jhhh" to="/addemployee">Add Employee</Link>&nbsp;&nbsp;
                         </NavItem>
                         <NavItem>
                             <Link className="jhhh" to="/adminhead">Add Department</Link>

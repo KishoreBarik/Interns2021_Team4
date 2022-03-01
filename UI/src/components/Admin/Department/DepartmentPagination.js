@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { AiFillCaretRight,AiFillCaretLeft} from "react-icons/ai";
-import './Pagination.css';
+
 
 const DepartmentPagination = ({pages, setCurrentPage, currentDepartments, sortedDepartments}) => {
 
@@ -20,6 +20,8 @@ const DepartmentPagination = ({pages, setCurrentPage, currentDepartments, sorted
     return (
         <div className="clearfix">
         <div className="hint-text">
+        Showing <b>{currentDepartments.length}</b> out of <b>{sortedDepartments.length}</b> entries
+        </div>
         <ul className="pagination">
             <li className={`${currentButton === 1 ? 'page-item disabled' : 'page-item' }`}>
                 <a href="#!"
@@ -44,8 +46,8 @@ const DepartmentPagination = ({pages, setCurrentPage, currentDepartments, sorted
     > <AiFillCaretRight size={40} /></a></li>
         </ul>
     </div>
-    Showing <b>{currentDepartments.length}</b> out of <b>{sortedDepartments.length}</b> entries
-    </div>
+   
+    
     )
 }
 

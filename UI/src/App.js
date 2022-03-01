@@ -42,6 +42,10 @@ import EditClient from "./components/Admin/Client/MainClient/EditClient";
 import MainClient from "./components/Admin/Client/MainClient/MainClient";
 import AddClient from "./components/Admin/Client/MainClient/AddClient";
 
+import Apps from "./components/Admin/Employee/Appp";
+import AddProjects from "./components/Admin/Project/AddProjects";
+
+
 function App() {
   return (
     <div>
@@ -85,6 +89,9 @@ function App() {
           <Route exact path="/addclient"  element={<AddClient />} />
           <Route exact path="/editclient"  element={<EditClient />} />
           <Route exact path="/mainclient"  element={<MainClient />} />
+
+          <Route path="/addemployee" exact element={<Apps />} />
+          <Route path="/addproject" exact element={<AddProjects />} />
       
           
 

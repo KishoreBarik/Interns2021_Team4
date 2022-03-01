@@ -20,6 +20,8 @@ const TaskPagination = ({pages, setCurrentPage, currentTasks, sortedTasks}) => {
     return (
         <div className="clearfix">
         <div className="hint-text">
+        Showing <b>{currentTasks.length}</b> out of <b>{sortedTasks.length}</b> entries
+    </div>
         <ul className="pagination">
             <li className={`${currentButton === 1 ? 'page-item disabled' : 'page-item' }`}>
                 <a href="#!"
@@ -44,8 +46,7 @@ const TaskPagination = ({pages, setCurrentPage, currentTasks, sortedTasks}) => {
     > <AiFillCaretRight size={40} /></a></li>
         </ul>
     </div>
-    Showing <b>{currentTasks.length}</b> out of <b>{sortedTasks.length}</b> entries
-    </div>
+  
     )
 }
 

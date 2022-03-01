@@ -50,19 +50,26 @@ const DepartmentList=()=>{
         <React.Fragment>
         <div className="table-title">
 				<div className="row">
+
 					<div className="col-sm-6">
-						
-					</div><br/>
-					<div className="">
-						<Button onClick={handleShow} class="btn btn-success" 
-                        data-toggle="modal"><AiFillPlusCircle size={25}/>&nbsp;
+                    <h2>
+                    Manage <b>Department</b>
+                   </h2>
+					</div>
+
+					<div className="col-sm-6">
+						<Button onClick={handleShow} 
+                               class="btn btn-success" 
+                               data-toggle="modal">
                         <span>Add New Department</span></Button>	<br/>				
 					</div>
 				</div>
 			</div>
+
             <Alert show={showAlert} variant="success">
                 "Department list is updated successfully!"
             </Alert>
+
             <table className="table table-striped table-bordered table-hover">
             <thead>
                 <tr>
@@ -71,6 +78,7 @@ const DepartmentList=()=>{
                     <th>Actions</th>
                 </tr>
             </thead>
+
             <tbody>
             {
                   currentDepartments.map(department => (
@@ -79,8 +87,6 @@ const DepartmentList=()=>{
                     </tr>
                   ))  
                 }
-                
-
            </tbody>
            </table>
            <Pagination pages = {totalPagesNum}

@@ -1,4 +1,4 @@
-import { createContext,useState } from "react";
+import { createContext,useEffect,useState } from "react";
 import {v4 as uuidv4} from 'uuid';
 import Department from "../Department";
 
@@ -12,6 +12,15 @@ const DepartmentContextProvider = (props) => {
             {id:uuidv4(), name: 'CLIENT', code:'45638877'},
             
     ])
+useEffect(()=>{
+        setDepartments(JSON.parse(localStorage.getItem('departments')))
+    },[])
+
+useEffect(()=>{
+    localStorage.setItem('departments',JSON.stringify(departments));
+})
+
+
 
 
     const sortedDepartments = departments.sort((a,b)=>(a.name < b.name ? -1 : 1));

@@ -1,10 +1,10 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./LoginPage.css";
+import NavBarDulpi from "./NavBarDulpi";
 // import user_icon from "../images/user_icon.jpg";
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { FcBusinessman } from "react-icons/fc";
-import NavBarDulpi from "./NavBarDulpi";
 
 class LoginPage extends Component {
   constructor() {
@@ -70,7 +70,7 @@ class LoginPage extends Component {
   render() {
     return (
       <div>
-        <NavBarDulpi />
+        <NavBarDulpi/>
         <form className="main" onSubmit={this.handleSubmit}>
           <div className="sub-main">
             <div>
@@ -86,7 +86,7 @@ class LoginPage extends Component {
                     type="text"
                     placeholder="Username"
                     className="name input-class"
-                    name="user-name"
+                    name="username"
                     value={this.state.input.username}
                     onChange={this.handleChange}
                     required
@@ -127,6 +127,7 @@ class LoginPage extends Component {
 
                 <div className="link mt-2">
                   <Link to="/forgotpassword">Forgot Password</Link>
+                  
                 </div>
               </div>
             </div>

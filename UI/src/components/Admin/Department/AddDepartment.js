@@ -33,6 +33,7 @@ const AddDepartment=()=>{
                 placeholder='Enter Name'
                 name="name"
                 value={name}
+                
                 onChange={(e)=>onInputChange(e)}
                 required/><br/>
 
