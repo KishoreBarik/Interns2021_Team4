@@ -17,9 +17,15 @@ class AuthController extends Controller
 
         $user = User::where('user_name', $request->user_name)->first();
 
-        if(!$user | !Hash::check($request->password , $user->password) | $user->status!='active'){
+        if(!$user | !Hash::check($request->password , $user->password)){
             return [
                 'message' => 'Invalid Credentials '
+            ];
+        }
+
+        if($user->status!='active'){
+            return [
+                'message'=>'User is Not Active'
             ];
         }
 
